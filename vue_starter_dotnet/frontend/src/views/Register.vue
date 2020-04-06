@@ -57,7 +57,20 @@ export default {
     };
   },
   methods: {
+    validatePassword() {      
+        if (this.user.password != this.user.confirmPassword) {
+            alert("Passwords do not match.");
+            this.registrationErrors = true;
+        }
+        else {
+          this.registrationErrors=false;
+        }
+       
+    },
     register() {
+      this.validatePassword()
+      if(this.registrationErrors==false){      
+      
       fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
         method: 'POST',
         headers: {
@@ -75,6 +88,7 @@ export default {
         })
 
         .then((err) => console.error(err));
+      }
     },
   },
 };

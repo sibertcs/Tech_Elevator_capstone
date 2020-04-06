@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <p>Welcome, Nerd!</p>
+    <router-link to="/profile">Profile</router-link>
   </div>
 </template>
 
