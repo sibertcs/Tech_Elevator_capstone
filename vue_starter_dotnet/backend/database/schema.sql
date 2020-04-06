@@ -20,14 +20,41 @@ BEGIN TRANSACTION;
 
 CREATE TABLE users
 (
-	id			int			identity(10000,1),
+	user_id			int			identity(10000,1),
 	username	varchar(50)	not null,
 	password	varchar(50)	not null,
 	salt		varchar(50)	not null,
 	role		varchar(50)	default('user'),
 
-	constraint pk_users primary key (id)
+	constraint pk_user primary key (user_id)
+);
+CREATE TABLE profiles
+(
+	profile_id		int				identity(10000,1),
+	birth_date		date			not null,
+	current_weight	int				not null,
+	goal_weight		int				not	null,
+	height			int				not null,
+	picture			varchar(200)	not null,
+	user_id			int				not null
+	
+	
+
+	constraint pk_profile primary key (profile_id),
+	constraint fk_user foreign key (user_id) REFERENCES users (user_id)
+
 );
 
-
 COMMIT TRANSACTION;
+
+--ALTER TABLE profiles ADD FOREIGN KEY (id) REFERENCES users(id)
+--ALTER TABLE profiles
+--ADD CONSTRAINT FK_profiles_id
+--FOREIGN KEY(profiles_id)
+--REFERENCES users (users_id);
+
+--begin transaction
+--INSERT INTO users VALUES ('chaz', '123', '654', 'user');
+--INSERT INTO profiles VALUES ('1990-07-26', 185, 285, 74, 'picture.jpg', 10003);
+
+--rollback

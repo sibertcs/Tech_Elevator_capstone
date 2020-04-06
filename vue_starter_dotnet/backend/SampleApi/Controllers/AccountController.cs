@@ -8,6 +8,7 @@ using SampleApi.DAL;
 using SampleApi.Models;
 using SampleApi.Models.Account;
 using SampleApi.Providers.Security;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SampleApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace SampleApi.Controllers
         private ITokenGenerator tokenGenerator;
         private IPasswordHasher passwordHasher;
         private IUserDAO userDao;
+        private IProfileDAO profileDao;
 
         /// <summary>
         /// Creates a new account controller.
@@ -28,11 +30,12 @@ namespace SampleApi.Controllers
         /// <param name="tokenGenerator">A token generator used when creating auth tokens.</param>
         /// <param name="passwordHasher">A password hasher used when hashing passwords.</param>
         /// <param name="userDao">A data access object to store user data.</param>
-        public AccountController(ITokenGenerator tokenGenerator, IPasswordHasher passwordHasher, IUserDAO userDao)
+        public AccountController(ITokenGenerator tokenGenerator, IPasswordHasher passwordHasher, IUserDAO userDao, IProfileDAO profileDao)
         {
             this.tokenGenerator = tokenGenerator;
             this.passwordHasher = passwordHasher;
             this.userDao = userDao;
+            this.profileDao = profileDao;
         }
 
         /// <summary>
@@ -94,6 +97,20 @@ namespace SampleApi.Controllers
             }
 
             return result;
+        }
+        /// <summary>
+        /// Authenticates the user and provides a bearer token.
+        /// </summary>
+        /// <param name="profile">An object including the user's credentials.</param> 
+        /// <returns></returns>
+        [HttpPost("addProfile")]
+        public IActionResult AddProfile(Profile profile)
+        {
+            profileDao.AddProfile(profile);
+
+            return Ok(profile);
+
+
         }
     }
 }

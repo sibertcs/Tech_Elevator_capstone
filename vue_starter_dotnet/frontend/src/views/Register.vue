@@ -61,14 +61,21 @@ export default {
         if (this.user.password != this.user.confirmPassword) {
             alert("Passwords do not match.");
             this.registrationErrors = true;
+          }
+
+        else if (this.user.password.length <8 || this.user.password.length >20){
+          alert("Password must be between 8 and 20 characters.");
+          this.registrationErrors = true;
         }
         else {
           this.registrationErrors=false;
         }
-       
     },
+    
     register() {
       this.validatePassword()
+      if(this.registrationErrors==false)
+     
       if(this.registrationErrors==false){      
       
       fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {

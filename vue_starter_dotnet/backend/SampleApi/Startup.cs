@@ -34,7 +34,9 @@ namespace SampleApi
             Configuration = configuration;
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public IConfiguration Configuration { get; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         // This method gets called by the runtime. Use this method to add services to the container.
         /// <summary>
@@ -82,7 +84,7 @@ namespace SampleApi
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
-
+            services.AddTransient<IProfileDAO>(m => new ProfileSqlDAO(Configuration.GetConnectionString("Default")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
