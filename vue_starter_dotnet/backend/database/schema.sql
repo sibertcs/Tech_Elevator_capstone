@@ -4,23 +4,23 @@ USE master;
 GO
 
 -- Delete the DemoDB Database (IF EXISTS)
-IF EXISTS(select * from sys.databases where name='DemoDB')
-DROP DATABASE DemoDB;
+IF EXISTS(select * from sys.databases where name='FitnessDB')
+DROP DATABASE FitnessDB;
 GO
 
 -- Create a new DemoDB Database
-CREATE DATABASE DemoDB;
+CREATE DATABASE FitnessDB;
 GO
 
 -- Switch to the DemoDB Database
-USE DemoDB
+USE FitnessDB
 GO
 
 BEGIN TRANSACTION;
 
 CREATE TABLE users
 (
-	id			int			identity(1,1),
+	id			int			identity(10000,1),
 	username	varchar(50)	not null,
 	password	varchar(50)	not null,
 	salt		varchar(50)	not null,
