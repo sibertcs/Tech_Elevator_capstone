@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace SampleApi.DAL
 {
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class ProfileSqlDAO : IProfileDAO
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {
@@ -34,13 +33,13 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO profiles VALUES (@birthDate, @currentWeight, @goalWeight, @height, @picture, @userId);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO profiles VALUES (@birthDate, @currentWeight, @goalWeight, @height, @picture, @userName);", conn);
                     cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("@goalWeight", profile.GoalWeight);
                     cmd.Parameters.AddWithValue("@height", profile.Height);
                     cmd.Parameters.AddWithValue("@picture", profile.Picture);
-                    cmd.Parameters.AddWithValue("@userId", profile.UserId);
+                    cmd.Parameters.AddWithValue("@userName", profile.UserName);
 
                     cmd.ExecuteNonQuery();
 

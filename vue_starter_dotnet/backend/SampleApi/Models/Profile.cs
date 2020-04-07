@@ -34,6 +34,10 @@ namespace SampleApi.Models
         /// Represents a user in the system.
         /// </summary>
 
-        public int UserId { get; set; }
+        public string UserName { get; set; }
+
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
     }
+
 }
