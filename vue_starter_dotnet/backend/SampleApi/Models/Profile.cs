@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace SampleApi.Models
 {
-    /// <summary>
-    /// Represents a user's profile in the system.
-    /// </summary>
+
     public class Profile
     {
         /// <summary>
@@ -29,14 +27,14 @@ namespace SampleApi.Models
         /// <summary>
         /// Represents a user in the system.
         /// </summary>
-        public string Picture { get; set; }
+        public string ProfilePicture { get; set; }
         /// <summary>
         /// Represents a user in the system.
         /// </summary>
 
         public string UserName { get; set; }
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 
     }
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <form class="form-register" @submit.prevent="addProfile">
-      <h1>Your Profile</h1>
+      <h1>Create Your Profile</h1>
       <div class="form">
         <div class="form-input">
           <span class="label">Birthday:</span>
@@ -19,6 +19,10 @@
           <span class="label">Goal Weight:</span>
           <input type="number" min="1" max="1500" v-model="user.goalWeight" />
         </div>
+        <div class="form-input">
+          <span class="label">Picture location:</span>
+          <input type="text" maxLength="200" v-model="user.profilePicture" />
+        </div>
         <button type="submit">Save Profile</button>
        <!--  v-bind:disabled="!isValidForm" -->
       </div>
@@ -28,9 +32,13 @@
 
 <script>
 import auth from '@/auth';
+/* import Profile from './components/Profile.vue' */
 
 export default {
-  name: "profile",
+  name: "create-profile",
+  components:{
+    /* Profile */
+  },
   data() {
     return {
       user: {
@@ -71,7 +79,8 @@ export default {
         this.user.birthday != "" &&
         this.user.height != "" &&
         this.user.currentWeight != "" &&
-        this.user.goalWeight != ""
+        this.user.goalWeight != "" && 
+        this.profilePicture != ""
       );
     }
   }

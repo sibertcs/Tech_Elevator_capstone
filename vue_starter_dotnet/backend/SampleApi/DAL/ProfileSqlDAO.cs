@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SampleApi.DAL
 {
     public class ProfileSqlDAO : IProfileDAO
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+
     {
 
         private readonly string connectionString;
@@ -38,7 +38,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("@goalWeight", profile.GoalWeight);
                     cmd.Parameters.AddWithValue("@height", profile.Height);
-                    cmd.Parameters.AddWithValue("@picture", profile.Picture);
+                    cmd.Parameters.AddWithValue("@picture", profile.ProfilePicture);
                     cmd.Parameters.AddWithValue("@userName", profile.UserName);
 
                     cmd.ExecuteNonQuery();

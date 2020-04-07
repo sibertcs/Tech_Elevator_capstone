@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import auth from './auth'
-import Home from './views/Home.vue'
+/*import Home from './views/Home.vue'*/
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
-import Profile from './views/Profile.vue'
+import CreateProfile from './views/CreateProfile.vue'
+import HomePage from './views/HomePage.vue'
+import UserProfile from './views/UserProfile.vue'
+import EditProfile from './views/EditProfile.vue'
 
 Vue.use(Router)
 
@@ -23,10 +26,10 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'home-page',
+      component: HomePage,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -46,10 +49,26 @@ const router = new Router({
       }
     },
     {
-      path: "/profile",
-      name:"profile",
-      component: Profile,
+      path: "/create-profile",
+      name:"create-profile",
+      component: CreateProfile,
       meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/user-profile",
+      name: "user-profile",
+      component: UserProfile,
+      meta:{
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/edit-profile",
+      name: "edit-profile",
+      component: EditProfile,
+      meta:{
         requiresAuth: true
       }
     }

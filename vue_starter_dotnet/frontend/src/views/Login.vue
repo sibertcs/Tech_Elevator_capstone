@@ -71,7 +71,7 @@ export default {
               token = token.replace(/"/g, '');
             }
             auth.saveToken(token);
-            this.$router.push('/');
+            this.$router.push('/user-profile');
           }
         })
         .catch((err) => console.error(err));

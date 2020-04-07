@@ -20,7 +20,7 @@ BEGIN TRANSACTION;
 
 CREATE TABLE users
 (
-	user_id			int			identity(10000,1),
+	user_id		int			identity(10000,1),
 	username	varchar(50)	not null,
 	password	varchar(50)	not null,
 	salt		varchar(50)	not null,
@@ -35,15 +35,17 @@ CREATE TABLE profiles
 	current_weight	int				not null,
 	goal_weight		int				not	null,
 	height			int				not null,
-	picture			varchar(200)	not null,
-	user_id			int				not null
+	profile_picture	varchar(200)	not null,
+	user_name		varchar(200)	not null
 	
 	
 
 	constraint pk_profile primary key (profile_id),
-	constraint fk_user foreign key (user_id) REFERENCES users (user_id)
+	
 
 );
+
+INSERT INTO users VALUES ('Admin', 'jUE98uhvS5tdIlxRsmz1W7/Qaqo=', '9CWPUTvXqQ4=', 'Admin') 
 
 COMMIT TRANSACTION;
 
