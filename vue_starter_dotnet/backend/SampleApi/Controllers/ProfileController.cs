@@ -11,7 +11,6 @@ namespace SampleApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class ProfileController : Controller
     {
         private IProfileDAO profileDao;
@@ -34,11 +33,17 @@ namespace SampleApi.Controllers
             profileDao.AddProfile(profile);
 
             return Ok();
-
-
         }
-    
+
+        [HttpPost("editProfile")]
+        public IActionResult EditProfile([FromBody] Profile profile)
+        {
+            profile.UserName = User.Identity.Name;
+            profileDao.EditProfile(profile);
+
+            return Ok();
+        }
+
     }
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 }

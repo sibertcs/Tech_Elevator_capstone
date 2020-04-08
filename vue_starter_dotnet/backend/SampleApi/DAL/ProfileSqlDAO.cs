@@ -51,6 +51,31 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
+        public void EditProfile(Profile profile)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE profiles SET birth_date = @birthDate, current_weight = @currentWeight, goal_weight = @goalWeight, height = @height, picture = @picture, user_name = @userName) WHERE user_name = @userName;", conn);
+                    cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
+                    cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
+                    cmd.Parameters.AddWithValue("@goalWeight", profile.GoalWeight);
+                    cmd.Parameters.AddWithValue("@height", profile.Height);
+                    cmd.Parameters.AddWithValue("@picture", profile.ProfilePicture);
+                    cmd.Parameters.AddWithValue("@userName", profile.UserName);
+
+                    cmd.ExecuteNonQuery();
+
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
