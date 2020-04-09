@@ -35,13 +35,31 @@ namespace SampleApi.Controllers
             return Ok();
         }
 
-        [HttpPost("editProfile")]
+        [HttpPut("editProfile")]
         public IActionResult EditProfile([FromBody] Profile profile)
         {
             profile.UserName = User.Identity.Name;
             profileDao.EditProfile(profile);
 
             return Ok();
+        }
+        [HttpGet ("GetProfile")]
+        public IActionResult GetProfile()
+        {
+            string userName = User.Identity.Name;
+
+            var result = profileDao.GetProfile(userName);
+            result.BirthDate = result.BirthDate.Date;
+
+            return Ok(result);
+        }
+        private static DateTime TrimDate(DateTime date)
+        {
+            return new DateTime(
+                date.Year,
+                date.Month,
+                date.Day
+                );
         }
 
     }

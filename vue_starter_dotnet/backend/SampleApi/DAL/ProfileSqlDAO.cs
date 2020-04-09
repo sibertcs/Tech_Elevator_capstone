@@ -58,7 +58,7 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("UPDATE profiles SET birth_date = @birthDate, current_weight = @currentWeight, goal_weight = @goalWeight, height = @height, picture = @picture, user_name = @userName) WHERE user_name = @userName;", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE profiles SET birth_date = @birthDate, current_weight = @currentWeight, goal_weight = @goalWeight, height = @height, profile_picture = @picture, user_name = @userName WHERE user_name = @userName;", conn);
                     cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("@goalWeight", profile.GoalWeight);
@@ -76,6 +76,30 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
+        public Profile GetProfile(string userName)
+        {
+            Profile profile = new Profile();
 
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM profiles WHERE user_name = @userName", conn);
+                cmd.Parameters.AddWithValue("@userName", userName);
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    profile.BirthDate = Convert.ToDateTime(reader["birth_date"]);
+                    profile.Height = Convert.ToInt32(reader["height"]);
+                    profile.CurrentWeight = Convert.ToInt32(reader["current_weight"]);
+                    profile.GoalWeight = Convert.ToInt32(reader["goal_weight"]);
+                    profile.ProfilePicture = Convert.ToString(reader["profile_picture"]);
+                    profile.UserName = Convert.ToString(reader["user_name"]);
+                }
+            }
+            return profile;
+        }
+        
     }
 }

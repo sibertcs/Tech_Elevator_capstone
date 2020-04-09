@@ -36,7 +36,7 @@ CREATE TABLE profiles
 	goal_weight		int				not	null,
 	height			int				not null,
 	profile_picture	varchar(200)	not null,
-	user_name		varchar(200)	not null
+	user_name		varchar(200)	not null unique,
 	
 	
 

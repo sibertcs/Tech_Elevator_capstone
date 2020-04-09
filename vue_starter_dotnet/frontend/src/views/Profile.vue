@@ -1,29 +1,37 @@
 <template>
-  <div>
-    <form v-if="!isNewUser" class="form-register" @submit.prevent="addProfile">
-      <h1>Create Your Profile</h1>
-      <create-profile v-on:addProfile="addProfile"></create-profile>
-           
-    </form>
-    <form v-bind:user='user_information' class="form-register" @submit.prevent="editProfile">
-      <h1>Edit Your Profile</h1>
-      <edit-profile v-on:addProfile="editProfile"></edit-profile>
-    </form>
-  </div>
+  <form>
+    <div class="form">
+      <div class="form-input">
+        <span class="label">Birthday:</span>
+        <input required type="date" v-model="user.birthDate" />
+      </div>
+      <div class="form-input">
+        <span class="label">Height(inches):</span>
+        <input required type="number" min="24" max="96" v-model="user.height" />
+      </div>
+      <div class="form-input">
+        <span class="label">Current Weight:</span>
+        <input required type="number" min="1" max="1500" v-model="user.currentWeight" />
+      </div>
+      <div class="form-input">
+        <span class="label">Goal Weight:</span>
+        <input required type="number" min="1" max="1500" v-model="user.goalWeight" />
+      </div>
+      <div class="form-input">
+        <span class="label">Picture location:</span>
+        <input type="text" maxlength="200" v-model="user.profilePicture" />
+      </div>
+      <button v-on:click.prevent="saveProfile" type="submit">Save Profile</button>
+    </div>
+  </form>
 </template>
 
 <script>
-import auth from '@/auth';
-import CreateProfile from '@/components/CreateProfile.vue'
-import EditProfile from '@/components/EditProfile.vue'
+import auth from "@/auth";
 
 export default {
   name: "profile",
-  components:{
-    CreateProfile,
-    EditProfile
-  },
-  
+
   data() {
     return {
       user: {
@@ -33,65 +41,90 @@ export default {
         goalWeight: "",
         profilePicture: ""
       },
-      isNewUser: true
+      userName: this.getUser(),
+      isNewUser: false
     };
   },
-  methods: {
-    addProfile(data) {
-        fetch(`${process.env.VUE_APP_REMOTE_API_PROFILE}/AddProfile`, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: 'Bearer ' + auth.getToken(),
-          },
-          body: JSON.stringify(data)
-        })
-          .then(response => {
-            if (response.ok) {
-              alert("Profile Added");
-              this.birthDate = data.birthDate;
-              this.height = data.height;
-              this.currentWeight = data.currentWeight;
-              this.goalWeight = data.goalWeight;
-              this.profilePicture = data.profilePicture;
-              this.isNewUser = false
-              this.$router.push({
-                path: "/hub",
-                query: { registration: "success" }
-              });
-            }
-          })
-          .then(err => console.error(err));      
+  created() {
+    fetch(`${process.env.VUE_APP_REMOTE_API_PROFILE}/GetProfile`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.getToken()
       }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(user => {
+        this.user = user;
+        this.user.birthDate = user.birthDate.substring(0, 10);
+        if (this.user.height === 0) {
+          this.isNewUser = true;
+        }
+      })
+      .catch(err => console.error(err));
   },
-    editProfile(data) {
-        fetch(`${process.env.VUE_APP_REMOTE_API_PROFILE}/EditProfile`, {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: 'Bearer ' + auth.getToken(),
-          },
-          body: JSON.stringify(data)
+  methods: {
+    getUser() {
+      return auth.getUser();
+    },
+
+    addProfile() {
+      fetch(`${process.env.VUE_APP_REMOTE_API_PROFILE}/AddProfile`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.getToken()
+        },
+        body: JSON.stringify(this.user)
+      })
+        .then(response => {
+          if (response.ok) {
+            alert("Profile Added");
+            this.$router.push({
+              path: "/hub",
+              query: { registration: "success" }
+            });
+          }
         })
-          .then(response => {
-            if (response.ok) {
-              alert("Profile Updated");
-              this.isNewUser = false
-              this.$router.push({
-                path: "/hub",
-                query: { registration: "success" }
-              });
-            }
-          })
-          .then(err => console.error(err));      
-      },
+        .then(err => console.error(err));
+    },
+
+    editProfile() {
+      fetch(`${process.env.VUE_APP_REMOTE_API_PROFILE}/EditProfile`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.getToken()
+        },
+        body: JSON.stringify(this.user)
+      })
+        .then(response => {
+          if (response.ok) {
+            alert("Profile Updated");
+            this.isNewUser = false;
+            this.$router.push({
+              path: "/hub",
+              query: { registration: "success" }
+            });
+          }
+        })
+        .then(err => console.error(err));
+    },
+
+    saveProfile() {
+      this.isNewUser ? this.addProfile() : this.editProfile();
+    }
+  },
 
   computed: {
     isValidForm() {
       return (
-        this.user.birthday != "" &&
+        this.user.birthDate != "" &&
         this.user.height != "" &&
         this.user.currentWeight != "" &&
         this.user.goalWeight != ""
