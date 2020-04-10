@@ -53,13 +53,9 @@ namespace SampleApi.Controllers
 
             return Ok(result);
         }
-        private static DateTime TrimDate(DateTime date)
+        private static bool ValidateProfile(Profile profile)
         {
-            return new DateTime(
-                date.Year,
-                date.Month,
-                date.Day
-                );
+            return true;
         }
 
     }

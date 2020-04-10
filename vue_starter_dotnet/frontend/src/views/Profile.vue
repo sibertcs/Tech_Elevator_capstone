@@ -1,31 +1,68 @@
 <template>
-<div>
-  <form >
-    <div class="form">
-      <div class="form-input">
-        <span class="label">Birthday:</span>
-        <input required type="date" v-model="user.birthDate" />
-      </div>
-      <div class="form-input">
-        <span class="label">Height(inches):</span>
-        <input required type="number" min="24" max="96" v-model="user.height" />
-      </div>
-      <div class="form-input">
-        <span class="label">Current Weight:</span>
-        <input required type="number" min="1" max="1500" v-model="user.currentWeight" />
-      </div>
-      <div class="form-input">
-        <span class="label">Goal Weight:</span>
-        <input required type="number" min="1" max="1500" v-model="user.goalWeight" />
-      </div>
-      <div class="form-input">
-        <span class="label">Picture location:</span>
-        <input type="text" maxlength="200" v-model="user.profilePicture" />
-      </div>
-      <button v-on:click.prevent="saveProfile" type="submit">Save Profile</button>
+  <div>
+    <div>
+      <img v-if="user.profilePicture == ''" height="150" width="150" :src= "this.defaultProfilePicture">
+      <img v-if="user.profilePicture != ''" height="150" width="150" :src= "user.profilePicture">
+      <h4>DisplayName: {{user.displayName}}</h4>
+      <h4>Birthday: {{user.birthDate}}</h4>
+      <h4>Height: {{user.height}}</h4>
+      <h4>Current Weight: {{user.currentWeight}}</h4>
+      <h4>Goal Weight: {{user.goalWeight}}</h4>
+      
     </div>
-  </form>
-</div>
+    <button v-on:click="isHidden=false">Edit Profile</button>
+    <form v-if="!isHidden" v-on:submit.prevent="saveProfile">
+      <div class="form">
+         <div class="form-input">
+          <span class="label">Display Name:</span>
+          <input required type="text" minLength="1" maxLength="25" placeholder="Enter display name" v-model="user.displayName" />
+        </div>
+        <div class="form-input">
+          <span class="label">Birthday:</span>
+          <input required type="date" min="1900-01-01" max="2020-04-10" v-model="user.birthDate" />
+        </div>
+        <div class="form-input">
+          <span class="label">Height(inches):</span>
+          <input
+            class="form-control"
+            required
+            type="number"
+            min="24"
+            max="96"
+            v-model="user.height"
+            placeholder="Enter height"
+          />
+        </div>
+        <div class="form-input">
+          <span class="label">Current Weight:</span>
+          <input
+            class="form-control"
+            required
+            type="number"
+            min="1"
+            max="1500"
+            v-model="user.currentWeight"
+          />
+        </div>
+        <div class="form-input">
+          <span class="label">Goal Weight:</span>
+          <input
+            class="form-control"
+            required
+            type="number"
+            min="1"
+            max="1500"
+            v-model="user.goalWeight"
+          />
+        </div>
+        <div class="form-input">
+          <span class="label">Picture location:</span>
+          <input class="form-control" type="url" maxlength="200" v-model="user.profilePicture" placeholder="Enter picture URL" />
+        </div>
+        <button type="submit">Save Profile</button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -37,6 +74,7 @@ export default {
   data() {
     return {
       user: {
+        displayName: "",
         birthDate: "",
         height: "",
         currentWeight: "",
@@ -44,7 +82,10 @@ export default {
         profilePicture: ""
       },
       userName: this.getUser(),
-      isNewUser: false
+      isNewUser: false,
+      isHidden: true,
+      formValidation: false,
+      defaultProfilePicture: "https://www.politicspa.com/wp-content/uploads/2013/07/Silhouette-question-mark.jpeg"
     };
   },
   created() {
@@ -62,8 +103,15 @@ export default {
       .then(user => {
         this.user = user;
         this.user.birthDate = user.birthDate.substring(0, 10);
+        
         if (this.user.height === 0) {
           this.isNewUser = true;
+          this.user.birthDate = "1900-01-01"
+          this.user.height = "";
+          this.user.goalWeight = "";
+          this.user.currentWeight = "";
+          this.user.profilePicture = ""
+         
         }
       })
       .catch(err => console.error(err));
@@ -110,7 +158,7 @@ export default {
             alert("Profile Updated");
             this.isNewUser = false;
             this.$router.push({
-              path: "/hub",
+              path: "/",
               query: { registration: "success" }
             });
           }
@@ -118,21 +166,34 @@ export default {
         .then(err => console.error(err));
     },
 
+    isFormValid() {
+      if (
+        this.user.birthDate >= "1900-01-01" &&
+        this.user.birthDate <= "2020-04-04" &&
+        this.user.height >= "24" &&
+        this.user.height <= "96" &&
+        this.user.currentWeight >= "1" &&
+        this.user.currentWeight <= "1500" &&
+        this.user.goalWeight >= "1" &&
+        this.user.goalWeight <= "1500" &&
+        this.user.displayName >"0" &&
+        this.user.displayName <="25"
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     saveProfile() {
+      /* if (this.isFormValid()) { */
       this.isNewUser ? this.addProfile() : this.editProfile();
+      /* } else {
+        alert("Please fill out all fields");
+      } */
     }
   },
 
-  computed: {
-    isValidForm() {
-      return (
-        this.user.birthDate != "" &&
-        this.user.height != "" &&
-        this.user.currentWeight != "" &&
-        this.user.goalWeight != ""
-      );
-    }
-  }
+  computed: {}
 };
 </script>
 

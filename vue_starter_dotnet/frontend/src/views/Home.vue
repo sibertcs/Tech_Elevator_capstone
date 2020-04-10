@@ -1,20 +1,33 @@
 <template>
   <header>
-      <ul class="nav">
-        <li><router-link to='/login'>Login</router-link></li>
-        <li><router-link to='/register'>Register</router-link></li>
-        
-      </ul>
-    </header>
-    
+    <h1>Welcome {{user.sub}}!</h1>
+    <br>
+        <food-search></food-search>
+  </header>
 </template>
 
 <script>
+
+import FoodSearch from "@/components/FoodSearch.vue";
+
+
 export default {
-    name:'home'
-}
+  name: "home",
+  
+  components: {
+    FoodSearch,
+    
+    
+  },
+  props:{
+    user:Object
+  }
+  
+   
+  
+ 
+};
 </script>
 
 <style>
-
 </style>

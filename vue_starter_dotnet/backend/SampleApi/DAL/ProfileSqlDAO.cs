@@ -33,12 +33,13 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO profiles VALUES (@birthDate, @currentWeight, @goalWeight, @height, @picture, @userName);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO profiles VALUES (@birthDate, @currentWeight, @goalWeight, @height, @picture, @displayName, @userName);", conn);
                     cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("@goalWeight", profile.GoalWeight);
                     cmd.Parameters.AddWithValue("@height", profile.Height);
                     cmd.Parameters.AddWithValue("@picture", profile.ProfilePicture);
+                    cmd.Parameters.AddWithValue("@displayName", profile.DisplayName);
                     cmd.Parameters.AddWithValue("@userName", profile.UserName);
 
                     cmd.ExecuteNonQuery();
@@ -58,12 +59,13 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("UPDATE profiles SET birth_date = @birthDate, current_weight = @currentWeight, goal_weight = @goalWeight, height = @height, profile_picture = @picture, user_name = @userName WHERE user_name = @userName;", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE profiles SET birth_date = @birthDate, current_weight = @currentWeight, goal_weight = @goalWeight, height = @height, profile_picture = @picture, display_name = @displayName, user_name = @userName WHERE user_name = @userName;", conn);
                     cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("@goalWeight", profile.GoalWeight);
                     cmd.Parameters.AddWithValue("@height", profile.Height);
                     cmd.Parameters.AddWithValue("@picture", profile.ProfilePicture);
+                    cmd.Parameters.AddWithValue("@displayName", profile.DisplayName);
                     cmd.Parameters.AddWithValue("@userName", profile.UserName);
 
                     cmd.ExecuteNonQuery();
@@ -95,6 +97,7 @@ namespace SampleApi.DAL
                     profile.CurrentWeight = Convert.ToInt32(reader["current_weight"]);
                     profile.GoalWeight = Convert.ToInt32(reader["goal_weight"]);
                     profile.ProfilePicture = Convert.ToString(reader["profile_picture"]);
+                    profile.DisplayName = Convert.ToString(reader["display_name"]);
                     profile.UserName = Convert.ToString(reader["user_name"]);
                 }
             }

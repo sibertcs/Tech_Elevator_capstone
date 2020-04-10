@@ -31,7 +31,7 @@ namespace SampleApi.Models
         /// <summary>
         /// Represents a user in the system.
         /// </summary>
-
+        public string DisplayName { get; set; }
         public string UserName { get; set; }
 
 

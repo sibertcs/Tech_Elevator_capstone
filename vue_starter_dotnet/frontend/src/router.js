@@ -6,7 +6,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Home from './views/Home.vue'
 import Profile from './views/Profile.vue'
-import Hub from './views/Hub.vue'
+
 
 Vue.use(Router)
 
@@ -55,14 +55,8 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    {
-      path: "/hub",
-      name: "hub",
-      component: Hub,
-      meta:{
-        requiresAuth: true
-      }
-    }
+   
+    
   ]
 })
 
