@@ -1,5 +1,6 @@
 <template>
-  <form>
+<div>
+  <form >
     <div class="form">
       <div class="form-input">
         <span class="label">Birthday:</span>
@@ -24,6 +25,7 @@
       <button v-on:click.prevent="saveProfile" type="submit">Save Profile</button>
     </div>
   </form>
+</div>
 </template>
 
 <script>

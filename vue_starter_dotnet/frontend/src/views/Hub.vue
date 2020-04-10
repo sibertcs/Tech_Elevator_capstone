@@ -1,33 +1,33 @@
 <template>
   <header>
     <h1>Welcome {{user.sub}}!</h1>
-    
-      <ul class="nav">
-        <li><router-link to='/profile'>Edit Profile</router-link></li>
-        
-      </ul>
-    </header>
+    <br>
+        <food-search></food-search>
+  </header>
 </template>
 
 <script>
-import auth from '../auth';
+import auth from "../auth";
+import FoodSearch from "@/components/FoodSearch.vue";
 
 export default {
-    name:"hub",
-    data () {
-      return {
-        user: this.getUser()
-      }      
-    },
+  name: "hub",
+  components: {
+    FoodSearch,
+    
+  },
+  data() {
+    return {
+      user: this.getUser()
+    };
+  },
   methods: {
-    getUser(){
-        return auth.getUser();
-      }
+    getUser() {
+      return auth.getUser();
+    }
   }
-}
-
+};
 </script>
 
 <style>
-
 </style>

@@ -4,7 +4,7 @@ import auth from './auth'
 /*import Home from './views/Home.vue'*/
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
-import HomePage from './views/HomePage.vue'
+import Home from './views/Home.vue'
 import Profile from './views/Profile.vue'
 import Hub from './views/Hub.vue'
 
@@ -25,8 +25,8 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home-page',
-      component: HomePage,
+      name: 'home',
+      component: Home,
       meta: {
         requiresAuth: false
       }

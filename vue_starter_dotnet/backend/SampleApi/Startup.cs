@@ -85,6 +85,7 @@ namespace SampleApi
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
             services.AddTransient<IProfileDAO>(m => new ProfileSqlDAO(Configuration.GetConnectionString("Default")));
+            services.AddTransient<IMealDAO>(m => new MealSqlDAO(Configuration.GetConnectionString("Default")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

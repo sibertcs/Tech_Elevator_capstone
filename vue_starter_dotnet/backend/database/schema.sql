@@ -44,6 +44,20 @@ CREATE TABLE profiles
 	
 
 );
+CREATE TABLE meals
+(
+	meal_id				int				identity(1000,1),
+	fdc_id				int				not null,
+	food_name			varchar(200)	not null,
+	consumption_date	date			not null,
+	servings			decimal			not null,
+	meal_type			varchar(50)		not null,
+	total_calories		int				not null,
+	user_name			varchar(200)	not null unique,
+
+	constraint pk_meal_id primary key (meal_id),
+
+);
 
 INSERT INTO users VALUES ('Admin', 'jUE98uhvS5tdIlxRsmz1W7/Qaqo=', '9CWPUTvXqQ4=', 'Admin') 
 
@@ -55,8 +69,7 @@ COMMIT TRANSACTION;
 --FOREIGN KEY(profiles_id)
 --REFERENCES users (users_id);
 
---begin transaction
---INSERT INTO users VALUES ('chaz', '123', '654', 'user');
---INSERT INTO profiles VALUES ('1990-07-26', 185, 285, 74, 'picture.jpg', 10003);
+begin transaction
+INSERT INTO meals VALUES (1111, 'Apple','2020-04-10', 1.0, 'Snack', 69, 'Admin')
 
---rollback
+rollback

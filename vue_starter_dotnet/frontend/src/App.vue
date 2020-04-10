@@ -1,18 +1,29 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">HomePage</router-link>
+      <button><router-link to="/"> Home </router-link></button>
+      <button><router-link to="/hub"> Hub </router-link></button>
+      <button><router-link to="/profile"> View Profile </router-link></button>
+      <button v-on:click.prevent="logout"> Logout </button>
     </div>
     <router-view/>
   </div>
 </template>
 <script>
-
+import auth from "./auth";
 
 export default {
+  
   name: 'app',
   components: {
     
+    
+  },
+  methods:{
+    logout() {
+      auth.logout();
+      this.$router.push("/");
+  }
   }
 }
 </script>
