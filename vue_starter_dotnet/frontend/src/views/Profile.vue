@@ -81,6 +81,7 @@ export default {
         goalWeight: "",
         profilePicture: ""
       },
+      
       userName: this.getUser(),
       isNewUser: false,
       isHidden: true,
@@ -135,7 +136,7 @@ export default {
           if (response.ok) {
             alert("Profile Added");
             this.$router.push({
-              path: "/hub",
+              path: "/home",
               query: { registration: "success" }
             });
           }
@@ -158,7 +159,7 @@ export default {
             alert("Profile Updated");
             this.isNewUser = false;
             this.$router.push({
-              path: "/",
+              path: "/login",
               query: { registration: "success" }
             });
           }
@@ -185,11 +186,9 @@ export default {
       }
     },
     saveProfile() {
-      /* if (this.isFormValid()) { */
+      
       this.isNewUser ? this.addProfile() : this.editProfile();
-      /* } else {
-        alert("Please fill out all fields");
-      } */
+      
     }
   },
 

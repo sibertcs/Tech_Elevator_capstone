@@ -88,7 +88,7 @@ export default {
       })
         .then((response) => {
           if (response.ok) {
-            this.$router.push({ path: '/profile'});
+            this.$router.push({ path: '/'});
           } else {
             this.registrationErrors = true;
           }

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import auth from './auth'
-/*import Home from './views/Home.vue'*/
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Home from './views/Home.vue'
@@ -24,7 +23,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home,
       meta: {
@@ -32,7 +31,7 @@ const router = new Router({
       }
     },
     {
-      path: "/login",
+      path: "/",
       name: "login",
       component: Login,
       meta: {
