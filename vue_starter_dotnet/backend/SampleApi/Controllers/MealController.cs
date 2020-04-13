@@ -35,6 +35,20 @@ namespace SampleApi.Controllers
 
             return Ok();
         }
+        [HttpGet("displayEntries")]
+        public IActionResult DisplayEntries()
+        {
+            string userName = User.Identity.Name;
+            List<Meal> meals = mealDao.DisplayEntries(userName);
+            return Ok(meals);
+        }
+
+        [HttpDelete("removeEntry")]
+        public IActionResult RemoveEntry([FromBody] int mealId)
+        {
+            mealDao.RemoveEntry(mealId);
+            return Ok();
+        }
 
         [HttpGet("foodSearch/{foodSearch}")]
         public async Task<ActionResult> FoodSearch([FromRoute] string foodSearch)
@@ -61,6 +75,9 @@ namespace SampleApi.Controllers
                         Meal meal = new Meal();
                         meal.FDCID = root.foods[i].fdcId;
                         meal.FoodName = root.foods[i].description;
+                        meal.Servings = 1;
+                        meal.MealType = "Breakfast";
+                        meal.ConsumptionDate = DateTime.Now;
                         for (int j = 0; j < root.foods[i].foodNutrients.Length; j++)
                         {
                             if (root.foods[i].foodNutrients[j].nutrientName == "Energy")

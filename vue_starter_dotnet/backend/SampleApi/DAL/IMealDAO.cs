@@ -9,5 +9,9 @@ namespace SampleApi.DAL
     public interface IMealDAO
     {
         void AddMeal(Meal meal);
+
+        List<Meal> DisplayEntries(string userName);
+
+        void RemoveEntry(int mealId);
     }
 }

@@ -6,7 +6,7 @@
     <button type="submit">Search</button>
   </form>
   <div>
-    <form v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood">
+    <form v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood(food)">
       <h1>Name: {{food.foodName}}</h1>
       <h4>Calories: {{food.foodCalories}}</h4>
       <select v-model="food.mealType">
@@ -31,14 +31,14 @@
         <option>4.5</option>
         <option>5</option>
       </select>
-      <input type="date" min="1900-01-01" max="2020-04-10" v-model="food.consumptionDate">
+      <input type="date" min="1900-01-01" v-model="food.consumptionDate">
       <button type="submit">Add Food</button>
     </form>
   </div>
   </div>
 </template>
 
-<script>
+<script>       
 import auth from "@/auth";
 export default {
     name:"food-search",
@@ -51,17 +51,17 @@ export default {
           consumptionDate: "",
           servings: "",
           mealType: "",
+          foodCalories: "",
           totalCalories: "",
         },
         search: ""
       }     
   },
   methods: {
-    calculateTotalCalories(){
-      this.meals.foreach( (food) =>{
-        food.totalCalories = food.servings * food.foodCalories
-      })
-    },
+    calculateTotalCalories(food){
+      food.totalCalories = food.servings * food.foodCalories
+      },
+    
     getFoods(){
      
       fetch(`https://localhost:44392/api/Meal/foodSearch/${this.search}`,{
@@ -80,10 +80,34 @@ export default {
         this.meals = meals;
       })
       .catch(err => console.error(err));
+    },
+    saveFood(food) {
+      this.calculateTotalCalories(food);
+      fetch(`${process.env.VUE_APP_REMOTE_API_MEAL}/AddMeal`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.getToken()
+        },
+        body: JSON.stringify(food)
+      })
+        .then(response => {
+          if (response.ok) {
+            alert("Food added");
+            this.$router.push({
+              path: "/home",
+              query: { registration: "success" }
+            });
+          }
+        })
+        .then(err => console.error(err));
     }
-  }
 
+  }
+  
 }
+
 </script>
 
 <style>

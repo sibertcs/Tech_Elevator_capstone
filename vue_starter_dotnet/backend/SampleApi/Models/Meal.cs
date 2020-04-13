@@ -7,6 +7,7 @@ namespace SampleApi.Models
 {
     public class Meal
     {
+        public int MealID { get; set; }
         public int FDCID { get; set; }
         public string FoodName { get; set; }
         public DateTime ConsumptionDate { get; set; }

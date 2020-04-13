@@ -32,12 +32,13 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO meals VALUES (@mealId, @foodName, @consumptionDate, @servings, @mealType, @totalCalories, @userName);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO meals VALUES (@mealId, @foodName, @consumptionDate, @servings, @mealType, @foodCalories, @totalCalories, @userName);", conn);
                     cmd.Parameters.AddWithValue("@mealId", meal.FDCID);
                     cmd.Parameters.AddWithValue("@foodName", meal.FoodName);
                     cmd.Parameters.AddWithValue("@consumptionDate", meal.ConsumptionDate);
                     cmd.Parameters.AddWithValue("@servings", meal.Servings);
                     cmd.Parameters.AddWithValue("@mealType", meal.MealType);
+                    cmd.Parameters.AddWithValue("@foodCalories", meal.FoodCalories);
                     cmd.Parameters.AddWithValue("@totalCalories", meal.TotalCalories);
                     cmd.Parameters.AddWithValue("@userName", meal.UserName);
 
@@ -51,6 +52,48 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
+        public List<Meal> DisplayEntries(string userName)
+        {
+            List<Meal> meals = new List<Meal>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT fdc_id, meal_id, food_name, consumption_date, servings, meal_type, food_calories, total_calories FROM meals WHERE user_name = @userName", conn);
+                cmd.Parameters.AddWithValue("@userName", userName);
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Meal meal = new Meal();
+                    meal.FDCID = Convert.ToInt32(reader["fdc_id"]);
+                    meal.MealID = Convert.ToInt32(reader["meal_id"]);
+                    meal.FoodName = Convert.ToString(reader["food_name"]);
+                    meal.ConsumptionDate = Convert.ToDateTime(reader["consumption_date"]);
+                    meal.Servings = Convert.ToInt32(reader["servings"]);
+                    meal.MealType = Convert.ToString(reader["meal_type"]);
+                    meal.FoodCalories = Convert.ToInt32(reader["food_calories"]);
+                    meal.TotalCalories = Convert.ToInt32(reader["total_calories"]);
+                    meals.Add(meal);
+                }
+            }
+            return meals;
+        }
+
+        public void RemoveEntry(int mealId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM meals WHERE @mealId = meal_id", conn);
+                cmd.Parameters.AddWithValue("@mealId", mealId);
+
+                cmd.ExecuteNonQuery();
+
+            }
+        }
+
 
 
     }

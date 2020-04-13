@@ -53,8 +53,9 @@ CREATE TABLE meals
 	consumption_date	date			not null,
 	servings			decimal			not null,
 	meal_type			varchar(50)		not null,
+	food_calories		int				not null,
 	total_calories		int				not null,
-	user_name			varchar(200)	not null unique,
+	user_name			varchar(200)	not null
 
 	constraint pk_meal_id primary key (meal_id),
 
