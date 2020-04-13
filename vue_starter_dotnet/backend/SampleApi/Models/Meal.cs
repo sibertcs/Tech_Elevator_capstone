@@ -12,6 +12,7 @@ namespace SampleApi.Models
         public DateTime ConsumptionDate { get; set; }
         public decimal Servings { get; set; }
         public string MealType { get; set; }
+        public int FoodCalories { get; set; }
         public int TotalCalories { get; set; }
         public string UserName { get; set; }
         

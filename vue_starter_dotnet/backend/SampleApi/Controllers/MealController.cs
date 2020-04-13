@@ -44,8 +44,8 @@ namespace SampleApi.Controllers
             using (var client = new HttpClient())
             {
                 var apiKey = "GQVsihhcGgBndgYOHrE6Ny0CDsaNxX5Iiy4pfbAc";
-                client.BaseAddress = new Uri($"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={apiKey}&query={foodSearch}");
-
+                client.BaseAddress = new Uri($"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={apiKey}&query={foodSearch}&pageSize=200");
+               
                 //HTTP GET
                 //var responseTask = client.GetAsync("&query=" + foodSearch);
                 var responseTask = client.GetAsync(client.BaseAddress);
@@ -65,7 +65,7 @@ namespace SampleApi.Controllers
                         {
                             if (root.foods[i].foodNutrients[j].nutrientName == "Energy")
                             {
-                                meal.TotalCalories = Convert.ToInt32(root.foods[i].foodNutrients[j].nutrientNumber);
+                                meal.FoodCalories = Convert.ToInt32(root.foods[i].foodNutrients[j].value);
                             }
                         }
 

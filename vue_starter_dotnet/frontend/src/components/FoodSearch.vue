@@ -5,6 +5,36 @@
     <input type="text" v-model="search" placeholder="Search for foods.."/>
     <button type="submit">Search</button>
   </form>
+  <div>
+    <form v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood">
+      <h1>Name: {{food.foodName}}</h1>
+      <h4>Calories: {{food.foodCalories}}</h4>
+      <select v-model="food.mealType">
+        <span>Select meal type:</span>
+        <option selected disabled value="">Please select one</option>
+        <option>Breakfast</option>
+        <option>Lunch</option>
+        <option>Dinner</option>
+        <option>Snack</option>
+      </select>
+      <select v-model="food.servings">
+        <span>Select meal type:</span>
+        <option selected disabled value="">Please select one</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option>
+        <option>2.5</option>
+        <option>3</option>
+        <option>3.5</option>
+        <option>4</option>
+        <option>4.5</option>
+        <option>5</option>
+      </select>
+      <input type="date" min="1900-01-01" max="2020-04-10" v-model="food.consumptionDate">
+      <button type="submit">Add Food</button>
+    </form>
+  </div>
   </div>
 </template>
 
@@ -24,12 +54,14 @@ export default {
           totalCalories: "",
         },
         search: ""
-        
-        
-      }
-      
+      }     
   },
   methods: {
+    calculateTotalCalories(){
+      this.meals.foreach( (food) =>{
+        food.totalCalories = food.servings * food.foodCalories
+      })
+    },
     getFoods(){
      
       fetch(`https://localhost:44392/api/Meal/foodSearch/${this.search}`,{
@@ -43,19 +75,9 @@ export default {
       .then(response => {
         return response.json();
       })
-      .then(user => {
-        this.user = user;
-        this.user.birthDate = user.birthDate.substring(0, 10);
-        
-        if (this.user.height === 0) {
-          this.isNewUser = true;
-          this.user.birthDate = "1900-01-01"
-          this.user.height = "";
-          this.user.goalWeight = "";
-          this.user.currentWeight = "";
-          this.user.profilePicture = ""
-         
-        }
+      .then (meals => {
+        this.meals = null;
+        this.meals = meals;
       })
       .catch(err => console.error(err));
     }
