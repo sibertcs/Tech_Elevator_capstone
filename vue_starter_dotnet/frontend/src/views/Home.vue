@@ -3,7 +3,7 @@
     <h1>Welcome {{user.sub}}!</h1>
     <br />
     <food-search></food-search>
-    <display-entries :key="specialComponentKey"></display-entries>
+    <display-entries></display-entries>
   </header>
 </template>
 

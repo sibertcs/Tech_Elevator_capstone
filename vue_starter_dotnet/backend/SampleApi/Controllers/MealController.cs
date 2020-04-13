@@ -50,6 +50,13 @@ namespace SampleApi.Controllers
             return Ok();
         }
 
+        [HttpPut("editEntry")]
+        public IActionResult EditEntry([FromBody] Meal meal)
+        {
+            mealDao.EditEntry(meal);
+            return Ok();
+        }
+            
         [HttpGet("foodSearch/{foodSearch}")]
         public async Task<ActionResult> FoodSearch([FromRoute] string foodSearch)
         {

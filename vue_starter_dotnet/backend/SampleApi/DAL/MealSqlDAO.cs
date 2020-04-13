@@ -71,7 +71,7 @@ namespace SampleApi.DAL
                     meal.MealID = Convert.ToInt32(reader["meal_id"]);
                     meal.FoodName = Convert.ToString(reader["food_name"]);
                     meal.ConsumptionDate = Convert.ToDateTime(reader["consumption_date"]);
-                    meal.Servings = Convert.ToInt32(reader["servings"]);
+                    meal.Servings = Convert.ToDecimal(reader["servings"]);
                     meal.MealType = Convert.ToString(reader["meal_type"]);
                     meal.FoodCalories = Convert.ToInt32(reader["food_calories"]);
                     meal.TotalCalories = Convert.ToInt32(reader["total_calories"]);
@@ -91,6 +91,30 @@ namespace SampleApi.DAL
 
                 cmd.ExecuteNonQuery();
 
+            }
+        }
+
+        public void EditEntry(Meal meal)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE meals SET servings = @servings, meal_type = @mealType, total_calories = @totalCalories WHERE meal_id = @mealID;", conn);
+                    cmd.Parameters.AddWithValue("@servings", meal.Servings);
+                    cmd.Parameters.AddWithValue("@mealType", meal.MealType);
+                    cmd.Parameters.AddWithValue("@mealID", meal.MealID);
+                    cmd.Parameters.AddWithValue("@totalCalories", meal.TotalCalories);
+
+                    cmd.ExecuteNonQuery();
+
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
             }
         }
 

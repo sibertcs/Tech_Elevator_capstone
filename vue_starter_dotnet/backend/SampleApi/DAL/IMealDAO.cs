@@ -13,5 +13,7 @@ namespace SampleApi.DAL
         List<Meal> DisplayEntries(string userName);
 
         void RemoveEntry(int mealId);
+
+        void EditEntry(Meal meal);
     }
 }
