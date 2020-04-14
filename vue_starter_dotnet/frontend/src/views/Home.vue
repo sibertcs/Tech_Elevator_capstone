@@ -3,8 +3,8 @@
     <h1>Welcome {{this.user.sub}}!</h1>
     <br />
     <food-search></food-search>
-    <entry-log></entry-log>
-    <charts></charts>
+    <entry-log v-on:chartDataReady="saveChartData"></entry-log>
+    <charts v-bind:chartData="chartData"></charts>
   </header>
 </template>
 
@@ -20,6 +20,16 @@ export default {
     FoodSearch,
     EntryLog,
     Charts
+  },
+  methods:{
+    saveChartData(data){
+      this.chartData = data;
+    }
+  },
+  data(){
+    return{
+      chartData: null
+    }
   },
   props:{
     user:Object

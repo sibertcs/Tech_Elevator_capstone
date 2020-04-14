@@ -24,15 +24,15 @@
         <select v-model="food.servings">
           <span>Select meal type:</span>
           <option selected disabled value>Please select one</option>
-          <option>0.5</option>
+          
           <option>1</option>
-          <option>1.5</option>
+          
           <option>2</option>
-          <option>2.5</option>
+          
           <option>3</option>
-          <option>3.5</option>
+          
           <option>4</option>
-          <option>4.5</option>
+          
           <option>5</option>
         </select>
         <button type="submit">Edit Entry</button>
@@ -50,7 +50,8 @@ export default {
     return {
       meals: Array,
       isHidden: true,
-      date: Date
+      date: Date,
+      dailyMeals: Array
     };
   },
   methods: {
@@ -70,12 +71,21 @@ export default {
         .then(meals => {
         this.meals = null;
         this.meals = meals;
+        this.dailyMeals = meals;
+        this.$emit('chartDataReady', this.dailyMeals)
       })
 
         .catch(err => console.error(err));
     },
     trimTime(date) {
-      return date.substring(0, 10);
+       if(date==undefined) {
+           return "";
+           }
+           else {
+               return date.substring(0, 10);
+           }
+           
+       
     },
     calculateTotalCalories(food) {
       food.totalCalories = food.servings * food.foodCalories;

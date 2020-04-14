@@ -1,21 +1,54 @@
 <template>
   <div>
-    <canvas id="calorie-chart" >Chart</canvas>
+    <canvas id="daily-calorie-chart">Chart</canvas>
   </div>
 </template>
 
 <script>
 import Chart from "chart.js";
-import calorieChartData from "../chart-data.js";
+import calorieData from "../chart-data.js";
 
 export default {
   name: "charts",
   data() {
     return {
-     calorieChartData
+      calorieData,
+      breakfastCalories: 0,
+      lunchCalories: 0,
+      dinnerCalories: 0,
+      snackCalories: 0
     };
   },
+  props: {
+    chartData: Array
+  },
+  created() {
+    this.chartData.forEach(item => {
+      if (item.mealType === "Breakfast") {
+        this.breakfastCalories += item.totalCalories * 1;
+      } else if (item.mealType === "Lunch") {
+        this.lunchCalories += item.totalCalories * 1;
+      } else if (item.mealType === "Dinner") {
+        this.dinnerCalories += item.totalCalories * 1;
+      } else if (item.mealType === "Snack") {
+        this.snackCalories += item.totalCalories * 1;
+      }
+    });
+  },
   methods: {
+    displayDataToChart() {
+      this.chartData.forEach(item => {
+        if (item.mealType === "Breakfast") {
+          this.breakfastCalories += item.totalCalories * 1;
+        } else if (item.mealType === "Lunch") {
+          this.lunchCalories += item.totalCalories * 1;
+        } else if (item.mealType === "Dinner") {
+          this.dinnerCalories += item.totalCalories * 1;
+        } else if (item.mealType === "Snack") {
+          this.snackCalories += item.totalCalories * 1;
+        }
+      });
+    },
     createChart(chartId, chartData) {
       const ctx = document.getElementById(chartId);
       const myChart = new Chart(ctx, {
@@ -23,14 +56,19 @@ export default {
         data: chartData.data,
         options: chartData.options
       });
-        return myChart;
+      this.displayDataToChart();
+      return myChart;
     }
-    
   },
   mounted() {
-
-      this.calorieChartData.data.datasets[0].data=[25,5,10,15];
-    this.createChart("calorie-chart", this.calorieChartData);
+    this.calorieData.data.datasets[0].data = [
+      this.breakfastCalories,
+      this.lunchCalories,
+      this.dinnerCalories,
+      this.snackCalories
+    ];
+    this.createChart("daily-calorie-chart", this.calorieData);
+    this.displayDataToChart();
   }
 };
 </script>

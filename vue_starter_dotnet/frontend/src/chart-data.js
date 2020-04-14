@@ -1,11 +1,11 @@
-export const calorieChartData = {
-    type: 'line',
+export const calorieData = {
+    type: 'bar',
     data: {
       labels: ['Breakfast', 'Lunch', 'Dinner', 'Snack'],
       datasets: [
         { // one line graph
           label: 'Calories Consumed',
-          data: [200, 300, 725, 175],
+          data: [],
           backgroundColor: [
             'rgba(54,73,93,.5)', // Blue
             'rgba(54,73,93,.5)',
@@ -45,4 +45,4 @@ export const calorieChartData = {
     }
   }
   
-  export default calorieChartData;
+  export default calorieData;

@@ -20,15 +20,15 @@
       <select v-model="food.servings">
         <span>Select meal type:</span>
         <option selected disabled value="">Please select one</option>
-        <option>0.5</option>
+        
         <option>1</option>
-        <option>1.5</option>
+        
         <option>2</option>
-        <option>2.5</option>
+        
         <option>3</option>
-        <option>3.5</option>
+        
         <option>4</option>
-        <option>4.5</option>
+        
         <option>5</option>
       </select>
       <input type="date" min="1900-01-01" v-model="food.consumptionDate">
@@ -96,7 +96,7 @@ export default {
             alert("Food added");
             this.$router.push({
               path: "/home",
-              query: { registration: "success" }
+              
             });
           }
         })
