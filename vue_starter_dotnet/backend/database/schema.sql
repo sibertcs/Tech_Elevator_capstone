@@ -51,7 +51,7 @@ CREATE TABLE meals
 	fdc_id				int				not null,
 	food_name			varchar(200)	not null,
 	consumption_date	date			not null,
-	servings			decimal			not null,
+	servings			float			not null,
 	meal_type			varchar(50)		not null,
 	food_calories		int				not null,
 	total_calories		int				not null,

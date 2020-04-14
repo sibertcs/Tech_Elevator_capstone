@@ -66,6 +66,7 @@ export default {
             .then(response => {
                 if(response.ok){
                     alert("Entry successfully deleted");
+                    
                     this.$router.push({
                     path: "/home",
                 });
