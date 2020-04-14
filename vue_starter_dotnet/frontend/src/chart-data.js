@@ -1,5 +1,5 @@
 export const calorieChartData = {
-    type: 'pie',
+    type: 'line',
     data: {
       labels: ['Breakfast', 'Lunch', 'Dinner', 'Snack'],
       datasets: [

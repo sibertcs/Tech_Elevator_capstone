@@ -52,34 +52,7 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
-        public List<Meal> DisplayEntries(string userName)
-        {
-            List<Meal> meals = new List<Meal>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT fdc_id, meal_id, food_name, consumption_date, servings, meal_type, food_calories, total_calories FROM meals WHERE user_name = @userName", conn);
-                cmd.Parameters.AddWithValue("@userName", userName);
-
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Meal meal = new Meal();
-                    meal.FDCID = Convert.ToInt32(reader["fdc_id"]);
-                    meal.MealID = Convert.ToInt32(reader["meal_id"]);
-                    meal.FoodName = Convert.ToString(reader["food_name"]);
-                    meal.ConsumptionDate = Convert.ToDateTime(reader["consumption_date"]);
-                    meal.Servings = Convert.ToDecimal(reader["servings"]);
-                    meal.MealType = Convert.ToString(reader["meal_type"]);
-                    meal.FoodCalories = Convert.ToInt32(reader["food_calories"]);
-                    meal.TotalCalories = Convert.ToInt32(reader["total_calories"]);
-                    meals.Add(meal);
-                }
-            }
-            return meals;
-        }
+        
 
         public void RemoveEntry(int mealId)
         {
@@ -117,6 +90,64 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
+        public List<Meal> DisplayEntries(string userName)
+        {
+            List<Meal> meals = new List<Meal>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT fdc_id, meal_id, food_name, consumption_date, servings, meal_type, food_calories, total_calories FROM meals WHERE user_name = @userName", conn);
+                cmd.Parameters.AddWithValue("@userName", userName);
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Meal meal = new Meal();
+                    meal.FDCID = Convert.ToInt32(reader["fdc_id"]);
+                    meal.MealID = Convert.ToInt32(reader["meal_id"]);
+                    meal.FoodName = Convert.ToString(reader["food_name"]);
+                    meal.ConsumptionDate = Convert.ToDateTime(reader["consumption_date"]);
+                    meal.Servings = Convert.ToDecimal(reader["servings"]);
+                    meal.MealType = Convert.ToString(reader["meal_type"]);
+                    meal.FoodCalories = Convert.ToInt32(reader["food_calories"]);
+                    meal.TotalCalories = Convert.ToInt32(reader["total_calories"]);
+                    meals.Add(meal);
+                }
+            }
+            return meals;
+        }
+        public List<Meal> GetChartData(string userName, DateTime filterDate)
+        {
+            List<Meal> meals = new List<Meal>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT fdc_id, meal_id, food_name, consumption_date, servings, meal_type, food_calories, total_calories FROM meals WHERE user_name = @userName AND consumption_date = @filterDate", conn);
+                cmd.Parameters.AddWithValue("@userName", userName);
+                cmd.Parameters.AddWithValue("@filterDate", filterDate);
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Meal meal = new Meal();
+                    meal.FDCID = Convert.ToInt32(reader["fdc_id"]);
+                    meal.MealID = Convert.ToInt32(reader["meal_id"]);
+                    meal.FoodName = Convert.ToString(reader["food_name"]);
+                    meal.ConsumptionDate = Convert.ToDateTime(reader["consumption_date"]);
+                    meal.Servings = Convert.ToDecimal(reader["servings"]);
+                    meal.MealType = Convert.ToString(reader["meal_type"]);
+                    meal.FoodCalories = Convert.ToInt32(reader["food_calories"]);
+                    meal.TotalCalories = Convert.ToInt32(reader["total_calories"]);
+                    meals.Add(meal);
+                }
+            }
+            return meals;
+        }
+
 
 
 

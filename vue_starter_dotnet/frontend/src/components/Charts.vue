@@ -28,6 +28,8 @@ export default {
     
   },
   mounted() {
+
+      this.calorieChartData.data.datasets[0].data=[25,5,10,15];
     this.createChart("calorie-chart", this.calorieChartData);
   }
 };

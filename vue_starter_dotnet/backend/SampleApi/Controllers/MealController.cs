@@ -42,6 +42,15 @@ namespace SampleApi.Controllers
             List<Meal> meals = mealDao.DisplayEntries(userName);
             return Ok(meals);
         }
+        [HttpGet("getChartData/{filterDate}")]
+        public IActionResult GetChartData([FromRoute] DateTime filterDate)
+        {
+            //DateTime filterDate = Convert.ToDateTime(date);
+            string userName = User.Identity.Name;
+            List<Meal> meals = mealDao.GetChartData(userName, filterDate);
+            return Ok(meals);
+        }
+
 
         [HttpDelete("removeEntry")]
         public IActionResult RemoveEntry([FromBody] int mealId)

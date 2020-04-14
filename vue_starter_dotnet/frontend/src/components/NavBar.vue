@@ -15,7 +15,7 @@
         <router-link to="/profile">View Profile</router-link>
       </button>
     </div>
-    <router-view v-bind:user="user" />
+    <router-view v-on:loggedInUser="getUser" v-bind:user="user" />
   </div>
 </template>
 

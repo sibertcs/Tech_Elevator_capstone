@@ -9,11 +9,13 @@ namespace SampleApi.DAL
     public interface IMealDAO
     {
         void AddMeal(Meal meal);
-
-        List<Meal> DisplayEntries(string userName);
-
+        
         void RemoveEntry(int mealId);
 
         void EditEntry(Meal meal);
+
+        List<Meal> DisplayEntries(string userName);
+
+        List<Meal> GetChartData(string userName, DateTime date);
     }
 }

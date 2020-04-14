@@ -3,7 +3,7 @@
     <h1>Welcome {{this.user.sub}}!</h1>
     <br />
     <food-search></food-search>
-    <display-entries></display-entries>
+    <entry-log></entry-log>
     <charts></charts>
   </header>
 </template>
@@ -11,14 +11,14 @@
 <script>
 
 import FoodSearch from "@/components/FoodSearch.vue";
-import DisplayEntries from "@/components/DisplayEntries.vue"
+import EntryLog from "@/components/EntryLog.vue"
 import Charts from "@/components/Charts.vue"
 
 export default {
   name: "home",
   components: {
     FoodSearch,
-    DisplayEntries,
+    EntryLog,
     Charts
   },
   props:{
