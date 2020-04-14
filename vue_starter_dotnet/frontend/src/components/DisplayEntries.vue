@@ -2,10 +2,13 @@
   <div>
     <div v-for="food in meals" :key="food.mealID">
         <h5>{{food.foodName}}</h5>
+        <h5>Servings: {{food.servings}}</h5>
+        <h5>Calories: {{food.totalCalories}}</h5>
+        <h5>Date: {{trimTime(food.consumptionDate)}}</h5>
         <button v-on:click="removeEntry(food.mealID)" >Remove Entry</button>
-        <button v-if="isHidden" v-on:click="isHidden = 'false'" >Edit Entry</button>
-        <button v-if="isHidden === 'false'" v-on:click="isHidden = 'true'" >Hide Form</button>
-        <form v-if="isHidden === 'false'" v-on:submit.prevent="editEntry(food)">
+        <button v-if="isHidden" v-on:click="isHidden = false" >Edit Entry</button>
+        <button v-if="!isHidden" v-on:click="isHidden = true" >Hide Form</button>
+        <form v-if="!isHidden" v-on:submit.prevent="editEntry(food)">
             <select v-model="food.mealType">
                 <span>Select meal type:</span>
                 <option selected disabled value="">Please select one</option>
@@ -50,10 +53,13 @@ export default {
         }
     },
     methods: {
+        trimTime (date){
+            return date.substring(0, 10);
+        },
         calculateTotalCalories(food){
             food.totalCalories = food.servings * food.foodCalories
         },    
-        removeEntry(mealID){
+        removeEntry(Id){
             fetch(`https://localhost:44392/api/Meal/RemoveEntry`, {
                 method: "DELETE",
                 headers: {
@@ -61,23 +67,22 @@ export default {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + auth.getToken()
                  },
-                 body: JSON.stringify(mealID)
+                 body: JSON.stringify(Id)
             })
             .then(response => {
                 if(response.ok){
                     alert("Entry successfully deleted");
+                    const changeMealToOnlyId = this.meals.map(meal =>meal.mealID);
+                    const index = changeMealToOnlyId.indexOf(Id);
                     
-                    this.$router.push({
-                    path: "/home",
-                });
+                    this.meals.splice(index,1);
+                    /* this.$router.push({
+                    path: "/home", */
+                
                 }
                 
             })
-            .then (meals => {
-                this.meals = null;
-                this.meals = meals;
-                
-            })
+            
             .catch(err => console.error(err));
         },
         editEntry(food) {
@@ -118,7 +123,7 @@ export default {
       .then (meals => {
         this.meals = null;
         this.meals = meals;
-        
+      
       })
       .catch(err => console.error(err));
   },

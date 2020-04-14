@@ -50,7 +50,7 @@ CREATE TABLE meals
 	meal_id				int				identity(1000,1),
 	fdc_id				int				not null,
 	food_name			varchar(200)	not null,
-	consumption_date	date			not null,
+	consumption_date	datetime		not null,
 	servings			float			not null,
 	meal_type			varchar(50)		not null,
 	food_calories		int				not null,

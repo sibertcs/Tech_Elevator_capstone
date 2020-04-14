@@ -4,6 +4,7 @@
     <br />
     <food-search></food-search>
     <display-entries></display-entries>
+    <charts></charts>
   </header>
 </template>
 
@@ -11,12 +12,14 @@
 
 import FoodSearch from "@/components/FoodSearch.vue";
 import DisplayEntries from "@/components/DisplayEntries.vue"
+import Charts from "@/components/Charts.vue"
 
 export default {
   name: "home",
   components: {
     FoodSearch,
-    DisplayEntries
+    DisplayEntries,
+    Charts
   },
   props:{
     user:Object

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>FoodSearch</h1>
+  
   <form v-on:submit.prevent="getFoods">
     <input type="text" v-model="search" placeholder="Search for foods.."/>
     <button type="submit">Search</button>
@@ -32,6 +32,7 @@
         <option>5</option>
       </select>
       <input type="date" min="1900-01-01" v-model="food.consumptionDate">
+      <!-- <input type="time" v-model="food.consumptionTime"> -->
       <button type="submit">Add Food</button>
     </form>
   </div>

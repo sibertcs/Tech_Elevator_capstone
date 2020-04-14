@@ -1,48 +1,19 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <button>
-        <router-link v-on:loggedIn="getUser" to="/">Login</router-link>
-      </button>
-      <button>
-        <router-link to="/register">Register</router-link>
-      </button>
-      <button>
-        <router-link to="/home">Home</router-link>
-      </button>
-      <button>
-        <router-link to="/profile">View Profile</router-link>
-      </button>
-      <button v-on:click.prevent="logout">Logout</button>
-    </div>
-    <router-view v-bind:user="user" v-on:loggedInUser="getUser" />
-  </div>
+<nav-bar></nav-bar>
 </template>
+
 <script>
-import auth from "./auth";
+import NavBar from "./components/NavBar.vue";
+
 
 export default {
   name: "app",
-  components: {},
-  data() {
-    return {
-      user: null
-    };
+  components: {
+    NavBar
   },
+ 
   methods: {
-    getUser() {
-      this.user = auth.getUser();
-      
-    },
-    logout() {
-      auth.logout();
-      this.$router.push("/");
-    }
-  },
-  created() {
-    this.getUser();
-    
-  }
+   }
 };
 </script>
 
