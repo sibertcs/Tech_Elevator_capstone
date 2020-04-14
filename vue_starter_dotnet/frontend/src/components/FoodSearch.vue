@@ -60,10 +60,8 @@ export default {
   methods: {
     calculateTotalCalories(food){
       food.totalCalories = food.servings * food.foodCalories
-      },
-    
-    getFoods(){
-     
+    },
+    getFoods(){ 
       fetch(`https://localhost:44392/api/Meal/foodSearch/${this.search}`,{
       method: "GET",
       headers: {

@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Welcome {{user.sub}}!</h1>
+    <h1>Welcome {{this.user.sub}}!</h1>
     <br />
     <food-search></food-search>
     <display-entries></display-entries>

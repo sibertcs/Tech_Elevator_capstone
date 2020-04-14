@@ -2,9 +2,10 @@
   <div>
     <div v-for="food in meals" :key="food.mealID">
         <h5>{{food.foodName}}</h5>
-        <button v-on:click="removeEntry(food.mealID)" type="submit" >Remove Entry</button>
-        <button v-on:click="isHidden == false" type="submit" >Edit Entry</button>
-        <form v-on:submit.prevent="editEntry(food)">
+        <button v-on:click="removeEntry(food.mealID)" >Remove Entry</button>
+        <button v-if="isHidden" v-on:click="isHidden = 'false'" >Edit Entry</button>
+        <button v-if="isHidden === 'false'" v-on:click="isHidden = 'true'" >Hide Form</button>
+        <form v-if="isHidden === 'false'" v-on:submit.prevent="editEntry(food)">
             <select v-model="food.mealType">
                 <span>Select meal type:</span>
                 <option selected disabled value="">Please select one</option>
@@ -27,7 +28,7 @@
                 <option>4.5</option>
                 <option>5</option>
             </select>
-            <button v-on:submit.prevent="editEntry(food)" type="submit" >Edit Entry</button>
+            <button type="submit" >Edit Entry</button>
         </form>
         <!-- <button type="submit" v-on:submit.prevent="isHidden == 'false'">Edit Entry</button>  -->
     </div>
