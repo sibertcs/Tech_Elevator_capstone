@@ -1,8 +1,8 @@
 <template>
   <header>
-    <h1>Welcome {{this.user.sub}}!</h1>
-    <br />
-    <b-card-group column>
+    <h1 class="welcome">Welcome {{this.user.sub}}!</h1>
+    <br/>
+    <b-card-group column class="bcardgroup">
       <b-card class="food-search">
         <food-search></food-search>
       </b-card>
@@ -51,8 +51,16 @@ export default {
 .food-search {
   color: blue;
 }
-.entry-log {
+
+
+
+.bcardgroup {
+  width: 100%;
 }
-.charts {
+
+.welcome {
+  text-align: center;
 }
+
+
 </style>

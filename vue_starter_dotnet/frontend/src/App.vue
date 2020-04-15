@@ -27,10 +27,10 @@ body {
   font-family: "Roboto Condensed", sans-serif;
 }
 #app {
-  width: 50%;
+  width: 80%;
   min-height: 100vh;
   height: 100%;
-  background-color: #fff;
+  background-color: lightgrey;
   margin: 10px auto;
   padding: 20px;
   /*box-shadow: 4px 4px rgb(0, 0, 0, 40%);*/
