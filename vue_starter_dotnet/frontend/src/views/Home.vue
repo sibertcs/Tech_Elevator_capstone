@@ -6,7 +6,8 @@
         <food-search></food-search>
       </b-card>
       <b-card class="entry-log bg-light">
-        <entry-log v-on:chartDataReady="saveChartData"></entry-log>      
+        <entry-log v-on:chartDataReady="saveChartData"></entry-log>  
+      </b-card>    
       <b-card class="charts">
         <daily-chart v-bind:chartData="chartData"></daily-chart>
       </b-card>
