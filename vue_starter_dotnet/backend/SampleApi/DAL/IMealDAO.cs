@@ -8,14 +8,14 @@ namespace SampleApi.DAL
 {
     public interface IMealDAO
     {
-        void AddMeal(Meal meal);
+        void AddMeal(MealModel meal);
         
         void RemoveEntry(int mealId);
 
-        void EditEntry(Meal meal);
+        void EditEntry(MealModel meal);
 
-        List<Meal> DisplayEntries(string userName);
+        List<MealModel> DisplayEntries(string userName);
 
-        List<Meal> GetChartData(string userName, DateTime date);
+        List<MealModel> GetChartData(string userName, DateTime date);
     }
 }

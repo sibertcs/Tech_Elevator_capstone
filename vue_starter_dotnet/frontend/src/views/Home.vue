@@ -4,22 +4,25 @@
     <br />
     <food-search></food-search>
     <entry-log v-on:chartDataReady="saveChartData"></entry-log>
-    <charts v-bind:chartData="chartData"></charts>
+    <daily-chart v-bind:chartData="chartData"></daily-chart>
+    <progress-charts></progress-charts>
   </header>
 </template>
 
 <script>
 
 import FoodSearch from "@/components/FoodSearch.vue";
-import EntryLog from "@/components/EntryLog.vue"
-import Charts from "@/components/Charts.vue"
+import EntryLog from "@/components/EntryLog.vue";
+import DailyChart from "@/components/DailyChart.vue";
+import ProgressCharts from "@/components/ProgressCharts.vue";
 
 export default {
   name: "home",
   components: {
     FoodSearch,
     EntryLog,
-    Charts
+    DailyChart,
+    ProgressCharts
   },
   methods:{
     saveChartData(data){

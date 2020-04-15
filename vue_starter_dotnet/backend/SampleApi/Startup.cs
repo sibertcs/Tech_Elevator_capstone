@@ -86,6 +86,7 @@ namespace SampleApi
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
             services.AddTransient<IProfileDAO>(m => new ProfileSqlDAO(Configuration.GetConnectionString("Default")));
             services.AddTransient<IMealDAO>(m => new MealSqlDAO(Configuration.GetConnectionString("Default")));
+            services.AddTransient<IChartDAO>(m => new ChartSqlDAO(Configuration.GetConnectionString("Default")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

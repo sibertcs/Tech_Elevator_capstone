@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SampleApi.Models
 {
-    public class Meal
+    public class MealModel
     {
         public int MealID { get; set; }
         public int FDCID { get; set; }

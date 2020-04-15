@@ -28,7 +28,7 @@ namespace SampleApi.Controllers
         /// <param name="meal">An object including the user's credentials.</param> 
         /// <returns></returns>
         [HttpPost("addMeal")]
-        public IActionResult AddMeal([FromBody] Meal meal)
+        public IActionResult AddMeal([FromBody] MealModel meal)
         {
             meal.UserName = User.Identity.Name;
             mealDao.AddMeal(meal);
@@ -39,7 +39,7 @@ namespace SampleApi.Controllers
         public IActionResult DisplayEntries()
         {
             string userName = User.Identity.Name;
-            List<Meal> meals = mealDao.DisplayEntries(userName);
+            List<MealModel> meals = mealDao.DisplayEntries(userName);
             return Ok(meals);
         }
         [HttpGet("getChartData/{filterDate}")]
@@ -47,7 +47,7 @@ namespace SampleApi.Controllers
         {
             //DateTime filterDate = Convert.ToDateTime(date);
             string userName = User.Identity.Name;
-            List<Meal> meals = mealDao.GetChartData(userName, filterDate);
+            List<MealModel> meals = mealDao.GetChartData(userName, filterDate);
             return Ok(meals);
         }
 
@@ -60,7 +60,7 @@ namespace SampleApi.Controllers
         }
 
         [HttpPut("editEntry")]
-        public IActionResult EditEntry([FromBody] Meal meal)
+        public IActionResult EditEntry([FromBody] MealModel meal)
         {
             mealDao.EditEntry(meal);
             return Ok();
@@ -69,12 +69,12 @@ namespace SampleApi.Controllers
         [HttpGet("foodSearch/{foodSearch}")]
         public async Task<ActionResult> FoodSearch([FromRoute] string foodSearch)
         {
-            List<Meal> meals = new List<Meal>();
+            List<MealModel> meals = new List<MealModel>();
             
             using (var client = new HttpClient())
             {
                 var apiKey = "GQVsihhcGgBndgYOHrE6Ny0CDsaNxX5Iiy4pfbAc";
-                client.BaseAddress = new Uri($"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={apiKey}&query={foodSearch}&pageSize=200");
+                client.BaseAddress = new Uri($"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={apiKey}&query={foodSearch}&pageSize=5");
                
                 //HTTP GET
                 //var responseTask = client.GetAsync("&query=" + foodSearch);
@@ -88,7 +88,7 @@ namespace SampleApi.Controllers
                     var root = JsonConvert.DeserializeObject<RootObject>(content);
                     for (int i = 0; i < root.foods.Length; i++)
                     {
-                        Meal meal = new Meal();
+                        MealModel meal = new MealModel();
                         meal.FDCID = root.foods[i].fdcId;
                         meal.FoodName = root.foods[i].description;
                         meal.Servings = 1;

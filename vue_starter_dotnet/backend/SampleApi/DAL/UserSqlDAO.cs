@@ -27,7 +27,7 @@ namespace SampleApi.DAL
         /// Saves the user to the database.
         /// </summary>
         /// <param name="user"></param>
-        public void CreateUser(User user)
+        public void CreateUser(UserModel user)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace SampleApi.DAL
         /// Deletes the user from the database.
         /// </summary>
         /// <param name="user"></param>
-        public void DeleteUser(User user)
+        public void DeleteUser(UserModel user)
         {
             try
             {
@@ -81,9 +81,9 @@ namespace SampleApi.DAL
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public User GetUser(string username)
+        public UserModel GetUser(string username)
         {
-            User user = null;
+            UserModel user = null;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -112,7 +112,7 @@ namespace SampleApi.DAL
         /// Updates the user in the database.
         /// </summary>
         /// <param name="user"></param>
-        public void UpdateUser(User user)
+        public void UpdateUser(UserModel user)
         {
             try
             {
@@ -136,9 +136,9 @@ namespace SampleApi.DAL
             }
         }
 
-        private User MapRowToUser(SqlDataReader reader)
+        private UserModel MapRowToUser(SqlDataReader reader)
         {
-            return new User()
+            return new UserModel()
             {
                 Id = Convert.ToInt32(reader["user_id"]),
                 Username = Convert.ToString(reader["username"]),

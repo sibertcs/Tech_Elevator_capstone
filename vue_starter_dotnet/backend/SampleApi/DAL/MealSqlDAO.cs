@@ -25,7 +25,7 @@ namespace SampleApi.DAL
         /// Saves the user to the database.
         /// </summary>
         /// <param name="user"></param>
-        public void AddMeal(Meal meal)
+        public void AddMeal(MealModel meal)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace SampleApi.DAL
             }
         }
 
-        public void EditEntry(Meal meal)
+        public void EditEntry(MealModel meal)
         {
             try
             {
@@ -90,9 +90,9 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
-        public List<Meal> DisplayEntries(string userName)
+        public List<MealModel> DisplayEntries(string userName)
         {
-            List<Meal> meals = new List<Meal>();
+            List<MealModel> meals = new List<MealModel>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -104,7 +104,7 @@ namespace SampleApi.DAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Meal meal = new Meal();
+                    MealModel meal = new MealModel();
                     meal.FDCID = Convert.ToInt32(reader["fdc_id"]);
                     meal.MealID = Convert.ToInt32(reader["meal_id"]);
                     meal.FoodName = Convert.ToString(reader["food_name"]);
@@ -118,9 +118,9 @@ namespace SampleApi.DAL
             }
             return meals;
         }
-        public List<Meal> GetChartData(string userName, DateTime filterDate)
+        public List<MealModel> GetChartData(string userName, DateTime filterDate)
         {
-            List<Meal> meals = new List<Meal>();
+            List<MealModel> meals = new List<MealModel>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -133,7 +133,7 @@ namespace SampleApi.DAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Meal meal = new Meal();
+                    MealModel meal = new MealModel();
                     meal.FDCID = Convert.ToInt32(reader["fdc_id"]);
                     meal.MealID = Convert.ToInt32(reader["meal_id"]);
                     meal.FoodName = Convert.ToString(reader["food_name"]);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace SampleApi.Models
 {
 
-    public class Profile
+    public class ProfileModel
     {
         /// <summary>
         /// Represents a user in the system.

@@ -16,9 +16,9 @@ namespace SampleApi.DAL
         /// </summary>
         /// <param name="profile"></param>
         /// <returns></returns>
-        void AddProfile(Profile profile);
-        void EditProfile(Profile profile);
+        void AddProfile(ProfileModel profile);
+        void EditProfile(ProfileModel profile);
 
-        Profile GetProfile(string userName);
+        ProfileModel GetProfile(string userName);
     }
 }

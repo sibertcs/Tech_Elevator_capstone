@@ -26,7 +26,7 @@ namespace SampleApi.DAL
         /// Saves the user to the database.
         /// </summary>
         /// <param name="user"></param>
-        public void AddProfile(Profile profile)
+        public void AddProfile(ProfileModel profile)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
-        public void EditProfile(Profile profile)
+        public void EditProfile(ProfileModel profile)
         {
             try
             {
@@ -78,9 +78,9 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
-        public Profile GetProfile(string userName)
+        public ProfileModel GetProfile(string userName)
         {
-            Profile profile = new Profile();
+            ProfileModel profile = new ProfileModel();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {

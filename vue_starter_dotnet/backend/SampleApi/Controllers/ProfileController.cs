@@ -27,7 +27,7 @@ namespace SampleApi.Controllers
         /// <param name="profile">An object including the user's credentials.</param> 
         /// <returns></returns>
         [HttpPost("addProfile")]
-        public IActionResult AddProfile([FromBody] Profile profile)
+        public IActionResult AddProfile([FromBody] ProfileModel profile)
         {
             profile.UserName = User.Identity.Name;
             profileDao.AddProfile(profile);
@@ -36,7 +36,7 @@ namespace SampleApi.Controllers
         }
 
         [HttpPut("editProfile")]
-        public IActionResult EditProfile([FromBody] Profile profile)
+        public IActionResult EditProfile([FromBody] ProfileModel profile)
         {
             profile.UserName = User.Identity.Name;
             profileDao.EditProfile(profile);
@@ -53,7 +53,7 @@ namespace SampleApi.Controllers
 
             return Ok(result);
         }
-        private static bool ValidateProfile(Profile profile)
+        private static bool ValidateProfile(ProfileModel profile)
         {
             return true;
         }

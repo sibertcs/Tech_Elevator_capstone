@@ -29,7 +29,7 @@ namespace SampleApi.Tests.Controllers
             mockHasher.Setup(m => m.ComputeHash("password")).Returns(new PasswordHash("hashedPassword", "salt"));
             mockHasher.Setup(m => m.VerifyHashMatch("hashedPassword", "password", "salt")).Returns(true);
 
-            mockDao.Setup(m => m.GetUser("user")).Returns(new User() { Password = "hashedPassword", Salt = "salt", Username = "user", Role = "User" });
+            mockDao.Setup(m => m.GetUser("user")).Returns(new UserModel() { Password = "hashedPassword", Salt = "salt", Username = "user", Role = "User" });
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace SampleApi.Tests.Controllers
 
             Assert.IsNotNull(result);           // verify we got an answer
             Assert.AreEqual("token", result.Value); //verify we got a token
-            mockDao.Verify(m => m.CreateUser(It.IsAny<User>()));   // verify we called create user
+            mockDao.Verify(m => m.CreateUser(It.IsAny<UserModel>()));   // verify we called create user
         }
 
         [TestMethod]
