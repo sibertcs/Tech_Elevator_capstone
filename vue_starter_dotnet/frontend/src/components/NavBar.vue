@@ -50,10 +50,10 @@ export default {
 </script>
 
 <style>
-#app{
-  /* width:100%; */
-  /* position: relative; */
-}
+/* #app{
+ width:100%;
+ position: relative;
+} */
 #nav{
   text-align:center;
 }
