@@ -14,7 +14,7 @@ namespace SampleApi.DAL
 
         ChartModel GetDataForYear(string userName);
 
-        DailyChartModel GetDataForDay(string userName, DateTime filterDate);
+        List<DailyChartModel> GetDataForDay(string userName, DateTime filterDate);
 
     }
 }

@@ -7,8 +7,8 @@ namespace SampleApi.Models
 {
     public class DailyChartModel
     {
-        public List<string> MealType { get; set; }
+        public string MealType { get; set; }
 
-        public List<int> TotalCalories { get; set; }
+        public int TotalCalories { get; set; }
     }
 }

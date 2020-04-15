@@ -2,7 +2,7 @@
 <div>
   
   <form v-on:submit.prevent="getFoods">
-    <input type="text" v-model="search" placeholder="Search for foods.."/>
+    <input v-on:change="getFoods" type="text" v-model="search" placeholder="Search for foods.."/>
     <button type="submit">Search</button>
   </form>
   <div>
@@ -94,10 +94,7 @@ export default {
         .then(response => {
           if (response.ok) {
             alert("Food added");
-            this.$router.push({
-              path: "/home",
-              
-            });
+            
           }
         })
         .then(err => console.error(err));

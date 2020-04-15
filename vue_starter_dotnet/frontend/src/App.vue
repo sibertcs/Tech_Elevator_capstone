@@ -27,7 +27,7 @@ body {
   font-family: "Roboto Condensed", sans-serif;
 }
 #app {
-  width: 50%;
+  width: 90%;
   min-height: 100vh;
   height: 100%;
   background-color: #fff;
