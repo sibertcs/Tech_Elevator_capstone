@@ -1,23 +1,21 @@
 <template>
   <header>
-    
-    <b-card-group column>
     <h1 class="welcome">Welcome {{this.user.sub}}!</h1>
-    <br/>
     <b-card-group column class="bcardgroup">
+      
       <b-card class="food-search">
         <food-search></food-search>
       </b-card>
       <b-card class="entry-log">
         <entry-log></entry-log>
       </b-card>
-       <b-card class="charts">
-      <daily-chart v-bind:chartData="chartData"></daily-chart>
-    </b-card>
+      <b-card class="charts">
+        <daily-chart v-bind:chartData="chartData"></daily-chart>
+      </b-card>
     </b-card-group>
     <b-card>
-    <progress-charts></progress-charts>
-    </b-card> 
+      <progress-charts></progress-charts>
+    </b-card>
   </header>
 </template>
 
@@ -25,7 +23,7 @@
 import FoodSearch from "@/components/FoodSearch.vue";
 import EntryLog from "@/components/EntryLog.vue";
 import DailyChart from "@/components/DailyChart.vue";
-import ProgressCharts from "@/components/ProgressCharts.vue"; 
+import ProgressCharts from "@/components/ProgressCharts.vue";
 
 export default {
   name: "home",
@@ -33,7 +31,7 @@ export default {
     FoodSearch,
     EntryLog,
     DailyChart,
-    ProgressCharts 
+    ProgressCharts
   },
   methods: {
     saveChartData(data) {
@@ -63,6 +61,4 @@ export default {
 .welcome {
   text-align: center;
 }
-
-
 </style>
