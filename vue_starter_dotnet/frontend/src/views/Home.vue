@@ -1,9 +1,10 @@
 <template>
   <header>
-    <h1>Welcome {{this.user.sub}}!</h1>
-    <br />
     
     <b-card-group column>
+    <h1 class="welcome">Welcome {{this.user.sub}}!</h1>
+    <br/>
+    <b-card-group column class="bcardgroup">
       <b-card class="food-search">
         <food-search></food-search>
       </b-card>
@@ -14,7 +15,6 @@
       <daily-chart v-bind:chartData="chartData"></daily-chart>
     </b-card>
     </b-card-group>
-   
     <b-card>
     <progress-charts></progress-charts>
     </b-card> 
@@ -55,5 +55,14 @@ export default {
 .food-search {
   color: blue;
 }
+
+.bcardgroup {
+  width: 100%;
+}
+
+.welcome {
+  text-align: center;
+}
+
 
 </style>
