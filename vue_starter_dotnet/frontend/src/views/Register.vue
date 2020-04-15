@@ -5,6 +5,7 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
       </div>
+      <v-card>
       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
@@ -32,6 +33,7 @@
         v-model="user.confirmPassword"
         required
       />
+      </v-card>
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
@@ -102,4 +104,7 @@ export default {
 </script>
 
 <style>
+.text-center{
+
+}
 </style>

@@ -82,5 +82,8 @@ export default {
 </script>
 
 <style>
-
+.text-center{
+ 
+  justify-content:center;
+}
 </style>

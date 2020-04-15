@@ -33,6 +33,6 @@ body {
   background-color: #fff;
   margin: 10px auto;
   padding: 20px;
-  box-shadow: 4px 4px rgb(0, 0, 0, 40%);
+  /*box-shadow: 4px 4px rgb(0, 0, 0, 40%);*/
 }
 </style>

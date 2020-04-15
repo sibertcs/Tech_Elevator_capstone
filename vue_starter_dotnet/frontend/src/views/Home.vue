@@ -2,15 +2,22 @@
   <header>
     <h1>Welcome {{this.user.sub}}!</h1>
     <br />
-    <food-search></food-search>
-    <entry-log v-on:chartDataReady="saveChartData"></entry-log>
-    <daily-chart v-bind:chartData="chartData"></daily-chart>
+    <b-card-group column>
+      <b-card class="food-search">
+        <food-search></food-search>
+      </b-card>
+      <b-card class="entry-log">
+        <entry-log v-on:chartDataReady="saveChartData"></entry-log>
+      </b-card>
+    </b-card-group>
+    <b-card class="charts">
+      <daily-chart v-bind:chartData="chartData"></daily-chart>
+    </b-card>
     <progress-charts></progress-charts>
   </header>
 </template>
 
 <script>
-
 import FoodSearch from "@/components/FoodSearch.vue";
 import EntryLog from "@/components/EntryLog.vue";
 import DailyChart from "@/components/DailyChart.vue";
@@ -24,21 +31,28 @@ export default {
     DailyChart,
     ProgressCharts
   },
-  methods:{
-    saveChartData(data){
+  methods: {
+    saveChartData(data) {
       this.chartData = data;
     }
   },
-  data(){
-    return{
+  data() {
+    return {
       chartData: null
-    }
+    };
   },
-  props:{
-    user:Object
+  props: {
+    user: Object
   }
 };
 </script>
 
 <style>
+.food-search {
+  color: blue;
+}
+.entry-log {
+}
+.charts {
+}
 </style>
