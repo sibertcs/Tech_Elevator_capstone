@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+   <div id="app">
     <div id="nav">
       <button v-if="!isLoggedIn">
         <router-link to="/">Login</router-link>
@@ -50,4 +50,11 @@ export default {
 </script>
 
 <style>
+#app{
+  width:100%;
+  position: relative;
+}
+#nav{
+  text-align:center;
+}
 </style>

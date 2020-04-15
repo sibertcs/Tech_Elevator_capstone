@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div>
+    <div class="profile-display">
       <img v-if="user.profilePicture == ''" height="150" width="150" :src= "this.defaultProfilePicture">
       <img v-if="user.profilePicture != ''" height="150" width="150" :src= "user.profilePicture">
-      <h4>DisplayName: {{user.displayName}}</h4>
-      <h4>Birthday: {{user.birthDate}}</h4>
-      <h4>Height: {{user.height}}</h4>
-      <h4>Current Weight: {{user.currentWeight}}</h4>
-      <h4>Goal Weight: {{user.goalWeight}}</h4>
+      <h3>DisplayName: {{user.displayName}}</h3>
+      <h3>Birthday: {{user.birthDate}}</h3>
+      <h3>Height: {{user.height}}</h3>
+      <h3>Current Weight: {{user.currentWeight}}</h3>
+      <h3>Goal Weight: {{user.goalWeight}}</h3>
       
     </div>
     <button v-on:click="isHidden=false">Edit Profile</button>
@@ -197,9 +197,16 @@ export default {
 </script>
 
 <style>
+
+.profile-display{
+color:grey;
+align-content: center;
+}
 .form {
+  
   margin-top: 20px;
   width: 510px;
+  
 }
 .form-input {
   padding: 10px;

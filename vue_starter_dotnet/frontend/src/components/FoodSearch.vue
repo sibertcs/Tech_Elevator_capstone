@@ -7,8 +7,8 @@
   </form>
   <div>
     <form v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood(food)">
-      <h1>Name: {{food.foodName}}</h1>
-      <h4>Calories: {{food.foodCalories}}</h4>
+      <h5>Name: {{food.foodName}}</h5>
+      <h6>Calories: {{food.foodCalories}}</h6>
       <select v-model="food.mealType">
         <span>Select meal type:</span>
         <option selected disabled value="">Please select one</option>

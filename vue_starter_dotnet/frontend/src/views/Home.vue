@@ -2,9 +2,12 @@
   <header>
     <h1>Welcome {{this.user.sub}}!</h1>
     <br />
-    <food-search></food-search>
-    <entry-log></entry-log>
-    <charts></charts>
+    <b-card-group column>
+    <b-card class="food-search"><food-search></food-search></b-card>
+    <b-card class="entry-log"><entry-log></entry-log></b-card>
+    </b-card-group>
+    <b-card class="charts"><charts></charts></b-card>
+    
   </header>
 </template>
 
@@ -28,4 +31,14 @@ export default {
 </script>
 
 <style>
+.food-search{
+  color:blue;
+  
+}
+.entry-log{
+  
+}
+.charts{
+  
+}
 </style>
