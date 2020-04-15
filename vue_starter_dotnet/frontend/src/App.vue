@@ -23,11 +23,13 @@ export default {
   padding: 0;
 }
 body {
-  background-color: #4eadea;
+  background-color: #e3f1f1;
   font-family: "Roboto Condensed", sans-serif;
+  padding-top: 25px;
 }
+
 #app {
-  width: 80%;
+  width: 100%;
   min-height: 100vh;
   height: 100%;
   background-color: lightgrey;

@@ -3,11 +3,12 @@
   
   <form v-on:submit.prevent="getFoods">
     <input type="text" v-model="search" placeholder="Search for foods.."/>
-    <button type="submit">Search</button>
+    <button class="btn btn-outline-info" type="submit">Search</button>
   </form>
   <div>
     <form v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood(food)">
-      <h5>Name: {{food.foodName}}</h5>
+      <br>
+      <h5>{{food.foodName}}</h5>
       <h6>Calories: {{food.foodCalories}}</h6>
       <select v-model="food.mealType">
         <span>Select meal type:</span>

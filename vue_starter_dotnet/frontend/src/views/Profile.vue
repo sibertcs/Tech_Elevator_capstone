@@ -3,14 +3,22 @@
     <div class="profile-display">
       <img v-if="user.profilePicture == ''" height="150" width="150" :src= "this.defaultProfilePicture">
       <img v-if="user.profilePicture != ''" height="150" width="150" :src= "user.profilePicture">
-      <h3>DisplayName: {{user.displayName}}</h3>
-      <h3>Birthday: {{user.birthDate}}</h3>
-      <h3>Height: {{user.height}}</h3>
-      <h3>Current Weight: {{user.currentWeight}}</h3>
-      <h3>Goal Weight: {{user.goalWeight}}</h3>
-      
+      <br>
+      <br>
+      <div style="text-align: center;">
+        <div style="display: inline-block; text-align: left;">
+      <h4>Display Name: {{user.displayName}}</h4>
+      <h4>Birthday:   {{user.birthDate}}</h4>
+      <h4>Height:   {{user.height}}</h4>
+      <h4>Current Weight:   {{user.currentWeight}}</h4>
+      <h4>Goal Weight:  {{user.goalWeight}}</h4>
+        </div>
+      </div>
     </div>
-    <button v-on:click="isHidden=false">Edit Profile</button>
+    <br>
+    <div class="edit-profile">
+    <button class="btn btn-outline-info" style="background-color: #e3f1f1;" v-on:click="isHidden=false">Edit Profile</button>
+    <div class="form-class">
     <form v-if="!isHidden" v-on:submit.prevent="saveProfile">
       <div class="form">
          <div class="form-input">
@@ -62,6 +70,8 @@
         <button type="submit">Save Profile</button>
       </div>
     </form>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -199,16 +209,30 @@ export default {
 <style>
 
 .profile-display{
-color:grey;
-align-content: center;
+color:teal;
+/* text-justify: left; */
+text-align: center;
+
 }
+
+.form-class {
+  text-align: center;
+}
+
+.edit-profile {
+  text-align: center;
+}
+
 .form {
-  
-  margin-top: 20px;
-  width: 510px;
-  
+  width: 300px;
+  text-align: center;
+  margin-top: 20px;  
 }
+
 .form-input {
   padding: 10px;
+  text-justify: center;
+  justify-items: center;
 }
+
 </style>

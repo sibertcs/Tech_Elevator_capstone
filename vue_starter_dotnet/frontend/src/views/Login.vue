@@ -27,8 +27,8 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <router-link class="needaccount" :to="{ name: 'register' }">Need an account?    </router-link>
+      <button class="btn btn-outline-info" style="background-color: #e3f1f1;" type="submit">Sign in</button>
     </form>
   </div>
 </template>
@@ -82,8 +82,14 @@ export default {
 </script>
 
 <style>
-.text-center{
- 
+.text-center{ 
   justify-content:center;
+  color:teal;
+}
+
+.needaccount {
+  color:teal;
+  font-size:larger;
+
 }
 </style>

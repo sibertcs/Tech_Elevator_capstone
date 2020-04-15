@@ -34,7 +34,7 @@
         required
       />
       </v-card>
-      <router-link :to="{ name: 'login' }">
+      <router-link class="haveaccount" :to="{ name: 'login' }">
         Have an account?
       </router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -105,6 +105,11 @@ export default {
 
 <style>
 .text-center{
-
+  width: 50px;
 }
-</style>
+
+.haveaccount {
+  color:teal;
+  font-size: larger;
+}
+
