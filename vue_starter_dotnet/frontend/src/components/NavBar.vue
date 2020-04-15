@@ -4,7 +4,7 @@
       <button class="btn btn-outline-info" color:teal v-if="!isLoggedIn">
         <router-link to="/">Login</router-link>
       </button>
-      <button class="btn btn-outline-info" color:teal v-if="isLoggedIn" v-on:click.prevent="logout">Logout</button>
+      <button class="btn btn-outline-info" v-if="isLoggedIn" v-on:click.prevent="logout">Logout</button>
       <button class="btn btn-outline-info">
         <router-link to="/register">Register</router-link>
       </button>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <input v-model="date" type="date" />
-      <button v-on:click="filterByDate(date)">Select Date</button>
+      <input v-on:change="filterByDate(date)" v-model="date"  type="date"/>
+      
     </div>
     <div v-for="food in meals" :key="food.mealID">
       <h5>{{food.foodName}}</h5>
@@ -50,7 +50,7 @@ export default {
     return {
       meals: Array,
       isHidden: true,
-      date: Date,
+      date: "2020-04-17",
       dailyMeals: Array
     };
   },
@@ -137,8 +137,8 @@ export default {
     }
   },
   created() {
-    let currentDate = Date.now();
-    fetch(`https://localhost:44392/api/Meal/GetChartData/${currentDate}`, {
+    /* let currentDate = "2020-04-15"; */
+    fetch(`https://localhost:44392/api/Meal/GetChartData/${this.date}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

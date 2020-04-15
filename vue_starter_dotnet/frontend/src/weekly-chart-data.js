@@ -1,7 +1,7 @@
-export const dailyCalorieData = {
+export const weeklyCalorieData = {
     type: 'line',
     data: {
-      labels: ['Breakfast', 'Lunch', 'Dinner', 'Snack'],
+      labels: [],
       datasets: [
         { // one line graph
           label: 'Calories Consumed',
@@ -47,6 +47,4 @@ export const dailyCalorieData = {
     }
   }
   
-  export default dailyCalorieData;
-
-  
+  export default weeklyCalorieData;

@@ -90,6 +90,5 @@ export default {
 .needaccount {
   color:teal;
   font-size:larger;
-
 }
 </style>

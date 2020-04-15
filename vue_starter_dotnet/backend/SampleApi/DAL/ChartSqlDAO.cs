@@ -37,7 +37,7 @@ namespace SampleApi.DAL
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32("sum"));
+                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32(reader["sum"]));
                     }
 
                 }
@@ -73,7 +73,7 @@ namespace SampleApi.DAL
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32("sum"));
+                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32(reader["sum"]));
                     }
 
                 }
@@ -108,7 +108,7 @@ namespace SampleApi.DAL
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32("sum"));
+                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32(reader["sum"]));
                     }
 
                 }
@@ -123,14 +123,14 @@ namespace SampleApi.DAL
             return model;
         }
 
-        public DailyChartModel GetDataForDay(string userName, DateTime filterDate)
+        public List<DailyChartModel> GetDataForDay(string userName, DateTime filterDate)
         {
-            DailyChartModel model = new DailyChartModel();
+            List<DailyChartModel> model = new List<DailyChartModel>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT fdc_id, meal_id, food_name, consumption_date, servings, meal_type, food_calories, total_calories FROM meals WHERE user_name = @userName AND consumption_date = @filterDate", conn);
+                SqlCommand cmd = new SqlCommand("SELECT meal_type, total_calories FROM meals WHERE user_name = @userName AND consumption_date = @filterDate", conn);
                 cmd.Parameters.AddWithValue("@userName", userName);
                 cmd.Parameters.AddWithValue("@filterDate", filterDate);
 
@@ -138,8 +138,10 @@ namespace SampleApi.DAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    model.TotalCalories.Add(Convert.ToInt32("total_calories"));
-                    model.MealType.Add(Convert.ToString("meal_type"));
+                    DailyChartModel day = new DailyChartModel();
+                    day.TotalCalories = Convert.ToInt32(reader["total_calories"]);
+                    day.MealType = Convert.ToString(reader["meal_type"]);
+                    model.Add(day);
                 }
             }
 

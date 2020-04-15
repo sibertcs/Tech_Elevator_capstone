@@ -8,6 +8,8 @@ using SampleApi.Models;
 
 namespace SampleApi.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ChartController : Controller
     {
         private IChartDAO chartDao;
@@ -40,12 +42,104 @@ namespace SampleApi.Controllers
             ChartModel model = chartDao.GetDataForYear(username);
             return Ok(model);
         }
-
-        public IActionResult GetDataForDay(DateTime filterDate)
+        [HttpGet("getDataForDay/{filterDate}")]
+        public IActionResult GetDataForDay([FromRoute] DateTime filterDate)
         {
             string username = User.Identity.Name;
-            DailyChartModel model = chartDao.GetDataForDay(username, filterDate);
+            List<DailyChartModel> model = chartDao.GetDataForDay(username, filterDate);
             return Ok(model);
+        }
+        [HttpGet("getCurrentDate")]
+        public IActionResult GetCurrentDate()
+        {
+            DateTime date = new DateTime();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            string trimmedDate= date.Year + "-" + date.Month + "-" + date.Day;
+            return Ok(trimmedDate);
         }
     }
 }
