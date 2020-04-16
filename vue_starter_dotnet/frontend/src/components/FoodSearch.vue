@@ -11,7 +11,7 @@
     </div> -->
   
   <form class="active-cyan-3 active-cyan-4 mb-4" v-on:submit.prevent="getFoods">
-    <i class="fas fa-search"></i><input id="searchbar" class="form-control" v-on:change="getFoods" type="text" v-model="search" placeholder="Search.."/>
+    <i class="fas fa-search"></i><input id="searchbar" class="form-control" v-on:change="getFoods" type="text" v-model="search"/>
     <button class="btn btn-outline-info" type="submit">Submit</button>
  
   </form>

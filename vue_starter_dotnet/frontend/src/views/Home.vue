@@ -2,14 +2,14 @@
   <header>
     
     <b-card-group column class="bcardgroup" style="padding:10px">
-      <b-card title="Search for Foods..." style="height: 400px; overflow-y:auto; color: #17a2b8" class="cards food-search bg-light">
+      <b-card title="Search for Foods" style="height: 400px; overflow-y:auto; color: #17a2b8" class="cards food-search bg-light">
         <food-search></food-search>
       </b-card>
-      <b-card title="Items Consumed..." style="height: 400px; overflow-y:auto; color: #17a2b8" class="cards entry-log bg-light">
+      <b-card title="Food Log" style="height: 400px; overflow-y:auto; color: #17a2b8" class="cards entry-log bg-light">
         <entry-log v-on:chartDataReady="saveChartData"></entry-log>
       </b-card>
       <b-card class=" cards bg-light">
-        <daily-chart title="Daily Calories..." style="color: #17a2b8" v-bind:chartData="chartData"></daily-chart>
+        <daily-chart title="Daily Calories" style="color: #17a2b8" v-bind:chartData="chartData"></daily-chart>
       </b-card>
     </b-card-group>
    
@@ -68,9 +68,8 @@ export default {
   padding: 0px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(5, 62, 71, 0.3);
   box-shadow: 0 30px 60px 0 rgba(5, 62, 71, 0.3);
-  text-align: center;
-}
-  
+  text-align: left;
+}  
 
 .progressCharts{
   margin:0 auto;
@@ -79,16 +78,17 @@ export default {
 }
 .food-search {
   color: teal;
+  /* text-align: center; */
 }
 
 .bcardgroup {
   width: 100%;
 }
 
-.welcome {
+/* .welcome {
   text-align: center;
   color: teal;
-}
+} */
 
 .fs {
   color: teal;
@@ -96,5 +96,11 @@ export default {
 
 .entry-log {
   color: teal;
+  /* text-align: center; */
 }
+
+/* .bg-light {
+  text-align: center;
+} */
+
 </style>

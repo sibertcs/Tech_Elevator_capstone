@@ -2,7 +2,7 @@
   <div>
         <h4>Daily Calories: {{this.getDailyCalories}}</h4>
     <div>
-      <input class="btn btn-outline-info" v-on:change="filterByDate()" v-model="date" type="date"/>
+      <input id="calories" v-on:change="filterByDate()" v-model="date" type="date"/>
     </div>
 
     <canvas id="daily-calorie-chart">Chart</canvas>
@@ -115,4 +115,7 @@ export default {
 </script>
 
 <style>
+#calories {
+  border-color:#17a2b8;
+}
 </style>
