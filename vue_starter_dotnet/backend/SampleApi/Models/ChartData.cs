@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace SampleApi.Models
 {
-    public class ChartModel
+    public class ChartData
     {
-        public List<int> TotalCaloriesPerPeriod { get; set; }
+        public int TotalCaloriesPerPeriod { get; set; }
     }
 }

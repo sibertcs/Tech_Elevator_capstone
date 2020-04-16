@@ -17,10 +17,11 @@ namespace SampleApi.DAL
             this.connectionString = connectionString;
         }
 
-        public ChartModel GetDataForWeek(string userName)
+        public List<int> GetDataForWeek(string userName)
         {
-            ChartModel model = new ChartModel();
+            List<int> model = new List<int>();
 
+            
             for (int i = 0; i < 7; i++)
             {
                 DateTime date = DateTime.Now.AddDays(-i);
@@ -35,26 +36,41 @@ namespace SampleApi.DAL
 
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    int data;
+                    try
                     {
-                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32(reader["sum"]));
+                        while (reader.Read())
+                        {
+                                
+                            data = Convert.ToInt32(reader["sum"]);
+                            model.Add(data);
+                        }
                     }
+                    catch
+                    {
+                        data = 0;
+                        model.Add(data);
+                        continue;
+                    }
+                        
 
                 }
 
             }
+                 
             return model;
         }
 
-        public ChartModel GetDataForMonth(string userName)
+        public List<int> GetDataForMonth(string userName)
         {
-            ChartModel model = new ChartModel();
+            List<int> model = new List<int>();
+
+            int trackerOne = 0;
+            int trackerTwo = -6;
 
             for (int i = 0; i < 4; i++)
             {
-                int trackerOne = 0;
-                int trackerTwo = -6;
-
+                
                 DateTime date = DateTime.Now.AddDays(trackerOne);
                 string dateTrimmed = date.ToString("yyyy-MM-dd");
 
@@ -64,30 +80,47 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT sum(total_calories) AS sum FROM meals WHERE user_name = @userName AND consumption_date BETWEEN @dateTrimmed AND @sevenDaysAgoTrimmed", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT sum(total_calories) AS sum FROM meals WHERE user_name = @userName AND consumption_date <= @dateTrimmed AND consumption_date >= @sevenDaysAgoTrimmed", conn);
                     cmd.Parameters.AddWithValue("@dateTrimmed", dateTrimmed);
                     cmd.Parameters.AddWithValue("@sevenDaysAgoTrimmed", sevenDaysAgoTrimmed);
                     cmd.Parameters.AddWithValue("@userName", userName);
 
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    int data;
+                    try
                     {
-                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32(reader["sum"]));
+                        while (reader.Read())
+                        {
+                            data = Convert.ToInt32(reader["sum"]);
+                            model.Add(data);
+                            trackerOne -= 7;
+                            trackerTwo -= 7;
+
+                        }
                     }
+                    catch
+                    {
+                        data = 0;
+                        model.Add(data);
+                        trackerOne -= 6;
+                        trackerTwo -= 6;
+                        continue;
+                        
+                    }
+                    
 
                 }
-                trackerOne -= 6;
-                trackerTwo -= 6;
+                
 
             }
 
             return model;
         }
 
-        public ChartModel GetDataForYear(string userName)
+        public List<int> GetDataForYear(string userName)
         {
-            ChartModel model = new ChartModel();
+            List<int> model = new List<int>();
 
             DateTime currentDate = DateTime.Now;
             int currentMonth = currentDate.Month;
@@ -106,10 +139,28 @@ namespace SampleApi.DAL
 
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    int data;
+                    try
                     {
-                        model.TotalCaloriesPerPeriod.Add(Convert.ToInt32(reader["sum"]));
+                        while (reader.Read())
+                        {
+                            data = Convert.ToInt32(reader["sum"]);
+                            model.Add(data);
+                        }
                     }
+                    catch
+                    {
+                        data = 0;
+                        model.Add(data);
+                        currentMonth--;
+                        if (currentMonth == 0)
+                        {
+                            currentMonth = 12;
+                            currentYear--;
+                        }
+                        continue;
+                    }
+                    
 
                 }
                 currentMonth--;

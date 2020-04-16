@@ -23,24 +23,24 @@ namespace SampleApi.Controllers
         public IActionResult GetDataForWeek()
         {
             string username = User.Identity.Name;
-            ChartModel model = chartDao.GetDataForWeek(username);
-            return Ok(model);
+            List<int> data = chartDao.GetDataForWeek(username);
+            return Ok(data);
         }
 
         [HttpGet("getDataForMonth")]
         public IActionResult GetDataForMonth()
         {
             string username = User.Identity.Name;
-            ChartModel model = chartDao.GetDataForMonth(username);
-            return Ok(model);
+            List<int> data = chartDao.GetDataForMonth(username);
+            return Ok(data);
         }
 
         [HttpGet("getDataForYear")]
         public IActionResult GetDataForYear()
         {
             string username = User.Identity.Name;
-            ChartModel model = chartDao.GetDataForYear(username);
-            return Ok(model);
+            List<int> data = chartDao.GetDataForYear(username);
+            return Ok(data);
         }
         [HttpGet("getDataForDay/{filterDate}")]
         public IActionResult GetDataForDay([FromRoute] DateTime filterDate)
