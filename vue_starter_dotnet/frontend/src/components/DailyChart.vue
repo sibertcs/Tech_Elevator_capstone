@@ -1,9 +1,10 @@
 <template>
   <div>
+        <h4>Daily Calories: {{this.getDailyCalories}}</h4>
     <div>
       <input class="btn btn-outline-info" v-on:change="filterByDate()" v-model="date" type="date"/>
     </div>
-    <h4>Daily Calories: {{this.getDailyCalories}}</h4>
+
     <canvas id="daily-calorie-chart">Chart</canvas>
     
   </div>

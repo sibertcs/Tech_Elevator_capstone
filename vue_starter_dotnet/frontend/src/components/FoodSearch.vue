@@ -1,7 +1,6 @@
 <template>
 <div>
 
-
   <!-- <div class="buscar-caja"> 
         <input type="text" name="" class="buscar-txt" placeholder="Search ....."/> 
         <a class="buscar-btn"> <i class="fa fa-search"></i> </a> 
@@ -10,13 +9,10 @@
     <div class="wrap" style="text-align: center; color: #fff;">
         <a href="http://opensnippets.com" target: "_blank" class="btn btn-primary">Download free bootstrap forms</a>
     </div> -->
-
-
-
   
-  <form v-on:submit.prevent="getFoods">
-    <input class="btn btn-outline-info" v-on:change="getFoods" type="text" v-model="search" placeholder="Search for foods.."/>
-    <button class="btn btn-outline-info" type="submit">Search</button>
+  <form class="active-cyan-3 active-cyan-4 mb-4" v-on:submit.prevent="getFoods">
+    <input id="searchbar" class="form-control" v-on:change="getFoods" type="text" v-model="search" placeholder="Search.."/>
+    <button class="btn btn-outline-info" type="submit">Submit</button>
   </form>
   <div>
     <form  v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood(food)">
@@ -119,8 +115,27 @@ export default {
 #foodSearchCard{
   height:150px;
   overflow-y: scroll;
-
 }
+
+#searchbar {
+  border-color:#17a2b8;
+}
+
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan input[type=text] {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan .fa, .active-cyan-2 .fa {
+  color: #4dd0e1;
+}
+
+
+
+
 /* .buscar-caja { 
   position: absolute; 
   top: 50%; left: 50%; 
@@ -176,4 +191,6 @@ export default {
     color: #CB356B;
     border: none;
 } */
+
+
 </style>
