@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="wrapper fadeInDown">
-      <div id="formContent">
+      <div id="registerContent">
         <!-- Tabs Titles -->
 
         <!-- Icon -->
@@ -54,7 +54,7 @@
           <input type="submit" class="fadeIn fifth" value="Create Account" />
         </form>
 
-        <div id="formFooter">
+        <div id="registerFooter">
           <router-link class="haveaccount" :to="{ name: 'login' }">Have an account?</router-link>
         </div>
       </div>
@@ -138,7 +138,7 @@ export default {
   padding: 20px;
 }
 
-#formContent {
+#registerContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -152,7 +152,7 @@ export default {
   text-align: center;
 }
 
-#formFooter {
+#registerFooter {
   background-color: #f6f6f6;
   border-top: 1px solid #dce8f1;
   padding: 25px;

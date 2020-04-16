@@ -15,7 +15,7 @@
 
   
   <form v-on:submit.prevent="getFoods">
-    <input class="btn btn-outline-info" v-on:change="getFoods" type="text" v-model="search" placeholder="Search for foods.."/>
+    <i class="fas fa-search"></i><input class="btn btn-outline-info" v-on:change="getFoods" type="text" v-model="search" placeholder="Search for foods.."/>
     <button class="btn btn-outline-info" type="submit">Search</button>
   </form>
   <div>
