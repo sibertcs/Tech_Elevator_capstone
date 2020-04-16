@@ -105,12 +105,7 @@ export default {
         },
         body: JSON.stringify(food)
       })
-        .then(response => {
-          if (response.ok) {
-            alert("Food added");
-            
-          }
-        })
+       
         .then(err => console.error(err));
     }
 

@@ -1,5 +1,5 @@
 export const dailyCalorieData = {
-    type: 'line',
+    type: 'doughnut',
     data: {
       labels: ['Breakfast', 'Lunch', 'Dinner', 'Snack'],
       datasets: [
@@ -7,14 +7,11 @@ export const dailyCalorieData = {
           label: 'Calories Consumed',
           data: [],
           backgroundColor: [
-            'rgba(54,73,93,.5)', // Blue
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)'
+            '#119CFF', // Blue
+            '#30FBAD',
+            '#F8572F',
+            '#9218F8'
+           
           ],
           borderColor: [
             '#36495d',

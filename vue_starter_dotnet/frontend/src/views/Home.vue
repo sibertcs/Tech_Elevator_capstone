@@ -1,20 +1,24 @@
 <template>
   <header>
-    <h1 class="welcome">Welcome {{this.user.sub}}!</h1>
-    <b-card-group  column class="bcardgroup">
-      <b-card style="height: 400px; overflow-y:auto" class="food-search bg-light">
+    
+    <b-card-group column class="bcardgroup" style="padding:10px">
+      <b-card title="Title" style="height: 400px; overflow-y:auto" class="cards food-search bg-light">
         <food-search></food-search>
       </b-card>
-      <b-card style="height: 400px; overflow-y:auto" class="entry-log bg-light">
-        <entry-log v-on:chartDataReady="saveChartData"></entry-log>  
-      </b-card>    
-      <b-card class="charts">
+      <b-card style="height: 400px; overflow-y:auto" class="cards entry-log bg-light">
+        <entry-log v-on:chartDataReady="saveChartData"></entry-log>
+      </b-card>
+      <b-card class=" cards bg-light">
         <daily-chart v-bind:chartData="chartData"></daily-chart>
       </b-card>
     </b-card-group>
-    <b-card>
-      <progress-charts :key="chartKey"></progress-charts>
-    </b-card>
+   
+      
+      <b-card style="width:50%" class="cards mx-auto">
+        <progress-charts :key="chartKey"></progress-charts>
+      </b-card>
+     
+   
   </header>
 </template>
 
@@ -52,6 +56,27 @@ export default {
 
 
 <style>
+.cards{
+  margin:10px;
+ -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(5, 62, 71, 0.3);
+  box-shadow: 0 30px 60px 0 rgba(5, 62, 71, 0.3);
+  text-align: center;
+}
+  
+
+.progressCharts{
+  margin:0 auto;
+  float: none;
+  margin-bottom:10px;
+}
 .food-search {
   color: teal;
 }
@@ -66,10 +91,10 @@ export default {
 }
 
 .fs {
-  color:teal;
+  color: teal;
 }
 
 .entry-log {
-  color:teal;
+  color: teal;
 }
 </style>
