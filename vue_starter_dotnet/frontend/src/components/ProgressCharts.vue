@@ -6,9 +6,10 @@
       <button v-on:click="getYearlyData">Yearly</button>
       <!-- <button v-on:click="getLifetimeData">Lifetime</button> -->
     </span>
-    <canvas  id="weekly-calorie-chart">Chart</canvas>
+    <canvas id="chartData"></canvas>
+<!--     <canvas  id="weekly-calorie-chart">Chart</canvas>
     <canvas  id="monthly-calorie-chart">Chart</canvas>
-    <canvas  id="yearly-calorie-chart">Chart</canvas>
+    <canvas  id="yearly-calorie-chart">Chart</canvas> -->
     <!--<canvas v-show="chartNumber == 4" id="lifetime-calorie-chart">Chart</canvas> -->
   </div>
 </template>
@@ -32,12 +33,58 @@ export default {
       weeklyCalorieData,
       monthlyCalorieData,
       yearlyCalorieData,
-      date: new Date(),
+      date: new Date().toISOString().substr(0, 10),
       daysWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      daysOfWeek: Object
+      daysOfWeek: Object,
+      dailyChartLabels: [],
+      monthlyChartLabels: [],
+      yearlyChartLabels: []
     };
   },
+  created(){
+    this.getWeeklyData();
+    this.populateDailyChartLabels();
+    this.populateMonthlyChartLabels();
+    this.populateYearlyChartLabels();
+  },
   methods: {
+    populateDailyChartLabels(){
+      let todaysDate = new Date();
+      for (let i = 7; i > 0; i--){
+        let dateTracker = new Date();
+        dateTracker.setDate(todaysDate.getDate()-i);
+        dateTracker = dateTracker.toISOString().substring(5, 10);
+        this.dailyChartLabels.push(dateTracker);
+      }
+    },
+    populateMonthlyChartLabels(){
+      let todaysDate = new Date();
+      for (let i = 28; i > 0; i-=7){
+        let dateTracker1 = new Date();
+        let dateTracker2 = new Date();
+        dateTracker1.setDate(todaysDate.getDate()-i);
+        dateTracker2.setDate(todaysDate.getDate()-(i-7));
+        dateTracker1 = dateTracker1.toISOString().substring(5, 10);
+        dateTracker2 = dateTracker2.toISOString().substring(5, 10);
+        let dateSpan = dateTracker1 + "  through  " + dateTracker2;
+        this.monthlyChartLabels.push(dateSpan);
+      }
+    },
+    populateYearlyChartLabels(){
+      let todaysDate = new Date();
+      let todaysMonth = (todaysDate.getMonth() + 1);
+      let todaysYear = (todaysDate.getFullYear())
+      for (let i = 0; i <= 11; i++){
+        if (todaysMonth == 0){
+          todaysMonth = 12;
+          todaysYear -= 1;
+        }
+        let dataPoint = todaysMonth + " / " + todaysYear;
+        this.yearlyChartLabels.push(dataPoint)
+        todaysMonth--;
+      }
+      this.yearlyChartLabels.reverse();
+    },
     getWeeklyData() {
       this.chartNumber = 1;
       fetch(`https://localhost:44392/api/Chart/GetDataForWeek`, {
@@ -55,7 +102,6 @@ export default {
           this.meals = null;
           this.meals = meals;
           this.updateChart();
-          this.$emit("weeklyChart")
         })
 
         .catch(err => console.error(err));
@@ -109,20 +155,14 @@ export default {
           this.meals[6], this.meals[5], this.meals[4],
           this.meals[3], this.meals[2], this.meals[1],
           this.meals[0]
-          ],
-          this.weeklyCalorieData.data.labels = [
-          '6 days ago','5 days ago','4 days ago',
-          '3 days ago','2 days ago','1 day ago',
-          'Today'
           ];
+          this.weeklyCalorieData.data.labels = this.dailyChartLabels;
           break;
         case 2:
           this.monthlyCalorieData.data.datasets[0].data = [
             this.meals[3], this.meals[2], this.meals[1], this.meals[0]
           ],
-          this.monthlyCalorieData.data.labels = [
-            '3 weeks ago', '2 weeks ago', '1 week ago', 'This week'
-          ]
+          this.monthlyCalorieData.data.labels = this.monthlyChartLabels;
           break;
         case 3:
           this.yearlyCalorieData.data.datasets[0].data = [
@@ -130,11 +170,7 @@ export default {
             this.meals[7], this.meals[6], this.meals[5], this.meals[4],
             this.meals[3], this.meals[2], this.meals[1], this.meals[0]
           ],
-          this.yearlyCalorieData.data.labels = [
-            '11 months ago', '10 months ago', '9 months ago', '8 months ago',
-            '7 months ago', '6 months ago', '5 months ago', '4 months ago',
-            '3 months ago', '2 months ago', '1 month ago', 'This month'
-          ]
+          this.yearlyCalorieData.data.labels = this.yearlyChartLabels;
           break;
       }
       
@@ -145,7 +181,7 @@ export default {
     },
     createChart(chartId, chartData) {
       this.updateData();
-      const ctx = document.getElementById(chartId);
+      const ctx = document.getElementById("chartData");
       const NewChart = new Chart(ctx, {
         type: chartData.type,
         data: chartData.data,
@@ -155,7 +191,7 @@ export default {
       this.myChart = NewChart;
     },
     updateChart() {
-      if (this.myChart == undefined || this.myChart == null) {
+      
         if(this.chartNumber === 1){
           this.createChart("weekly-calorie-chart", this.weeklyCalorieData);
         }
@@ -165,7 +201,7 @@ export default {
         else if (this.chartNumber === 3){
           this.createChart("yearly-calorie-chart", this.yearlyCalorieData)
         }     
-      }
+      
       this.updateData();
       this.myChart.update();
     }

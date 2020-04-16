@@ -1,11 +1,11 @@
 <template>
   <header>
     <h1 class="welcome">Welcome {{this.user.sub}}!</h1>
-    <b-card-group column class="bcardgroup">
-      <b-card class="food-search bg-light">
+    <b-card-group  column class="bcardgroup">
+      <b-card style="height: 400px; overflow-y:auto" class="food-search bg-light">
         <food-search></food-search>
       </b-card>
-      <b-card class="entry-log bg-light">
+      <b-card style="height: 400px; overflow-y:auto" class="entry-log bg-light">
         <entry-log v-on:chartDataReady="saveChartData"></entry-log>  
       </b-card>    
       <b-card class="charts">

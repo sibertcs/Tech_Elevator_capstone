@@ -1,12 +1,25 @@
 <template>
 <div>
+
+
+  <!-- <div class="buscar-caja"> 
+        <input type="text" name="" class="buscar-txt" placeholder="Search ....."/> 
+        <a class="buscar-btn"> <i class="fa fa-search"></i> </a> 
+        
+    </div> 
+    <div class="wrap" style="text-align: center; color: #fff;">
+        <a href="http://opensnippets.com" target: "_blank" class="btn btn-primary">Download free bootstrap forms</a>
+    </div> -->
+
+
+
   
   <form v-on:submit.prevent="getFoods">
-    <input class="btn btn-outline-info form-control" v-on:change="getFoods" type="text" v-model="search" placeholder="Search for foods.."/>
+    <input class="btn btn-outline-info" v-on:change="getFoods" type="text" v-model="search" placeholder="Search for foods.."/>
     <button class="btn btn-outline-info" type="submit">Search</button>
   </form>
   <div>
-    <form v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood(food)">
+    <form  v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood(food)">
       <br>
       <h5>{{food.foodName}}</h5>
       <h6>Calories: {{food.foodCalories}}</h6>
@@ -108,5 +121,64 @@ export default {
 </script>
 
 <style>
+#foodSearchCard{
+  height:150px;
+  overflow-y: scroll;
 
+}
+/* .buscar-caja { 
+  position: absolute; 
+  top: 50%; left: 50%; 
+  transform: translate(-50%, -50%); 
+  background: #fff; 
+  border-radius: 40px; 
+  padding: 10px; 
+} 
+.buscar-caja:hover > .buscar-txt 
+{
+  width: 240px; 
+  padding: 0 6px; 
+} 
+.buscar-caja:hover > .buscar-btn {
+  background: white; 
+  color: black; 
+} 
+
+.buscar-btn { 
+  
+  float: right; 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  transition: 0.4s; 
+  color: white; 
+  cursor: pointer; 
+} 
+.buscar-btn > i 
+{ 
+  font-size: 18px; 
+} 
+.buscar-txt { 
+  border: none; 
+  background: none; 
+  outline: none; 
+  float: left; 
+  padding: 0; 
+  color: #333; 
+  font-size: 16px; 
+  transition: 0.4s; 
+  line-height: 40px; 
+  width: 0px; 
+  font-weight: bold; 
+}
+
+.btn-primary{
+    background: #fff;
+    color: #CB356B;
+    border: none;
+} */
 </style>

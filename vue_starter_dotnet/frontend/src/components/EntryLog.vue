@@ -1,13 +1,14 @@
 <template>
   <div>
     <div>
-      <input class="btn btn-outline-info" v-on:change="filterByDate(date)" v-model="date"  type="date"/>
+      <input class="btn btn-outline-info" id="entryLogDate" v-on:change="filterByDate(date)" v-model="date"  type="date"/>
       
     </div>
     <div v-for="food in meals" :key="food.mealID">
             <br>
       <h5>{{food.foodName}}</h5>
       <h6>Servings: {{food.servings}}</h6>
+      <h6>Meal Type: {{food.mealType}}</h6>
       <h6>Calories: {{food.totalCalories}}</h6>
       <h6>Date: {{trimTime(food.consumptionDate)}}</h6>
       <button class="btn btn-outline-info" v-on:click="removeEntry(food.mealID)">Remove Entry</button>
@@ -51,7 +52,7 @@ export default {
     return {
       meals: Array,
       isHidden: true,
-      date: "2020-04-17",
+      date: new Date().toISOString().substr(0, 10),
       dailyMeals: Array
     };
   },
@@ -137,8 +138,7 @@ export default {
         .then(err => console.error(err));
     }
   },
-  created() {
-    /* let currentDate = "2020-04-15"; */
+  created() { 
     fetch(`https://localhost:44392/api/Meal/GetChartData/${this.date}`, {
       method: "GET",
       headers: {

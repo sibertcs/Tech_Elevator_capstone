@@ -20,13 +20,16 @@ export default {
     return {
       myChart: null,
       meals: Array,
-      date: new Date(),
+      date: new Date().toISOString().substr(0, 10),
       dailyCalorieData,
       breakfastCalories: 0,
       lunchCalories: 0,
       dinnerCalories: 0,
       snackCalories: 0
     };
+  },
+  created(){
+    this.filterByDate();
   },
   computed: {
     getDailyCalories(){
