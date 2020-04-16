@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="wrapper fadeInDown">
-      <div id="formContent">
+      <div id="loginContent">
         <!-- Tabs Titles -->
 
         <!-- Icon -->
@@ -49,7 +49,7 @@
         </form>
 
         <!-- Remind Passowrd -->
-        <div id="formFooter">
+        <div id="loginFooter">
           <router-link class="needaccount" :to="{ name: 'register' }">Need an account?</router-link>
         </div>
       </div>
@@ -166,7 +166,7 @@ export default {
   padding: 20px;
 }
 
-#formContent {
+#loginContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -180,7 +180,7 @@ export default {
   text-align: center;
 }
 
-#formFooter {
+#loginFooter {
   background-color: #f6f6f6;
   border-top: 1px solid #dce8f1;
   padding: 25px;

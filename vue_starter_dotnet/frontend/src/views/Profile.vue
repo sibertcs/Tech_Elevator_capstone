@@ -1,19 +1,26 @@
 <template>
   <div>
-    <div class="wrapper fadeInDown">
-      <div id="formContent">
-        <div class="fadeIn first">
+    
           <img
+            class="profile-picture"
             v-if="user.profilePicture == ''"
             height="150"
             width="150"
             :src="this.defaultProfilePicture"
           />
-          <img v-if="user.profilePicture != ''" height="150" width="150" :src="user.profilePicture" />
-        </div>
+          <img 
+            class="profile-picture"        
+            v-if="user.profilePicture != ''" 
+            height="250" width="250" 
+            :src="user.profilePicture" />
+        
+    <div class="wrapper fadeInDown profile-form">
+      <div id="formContent">
+        
        
         <form class="form-register" v-on:submit.prevent="saveProfile">
-          <h5 class="label">Display Name:</h5>
+          <div class="profile-form">
+          <!-- <h5 class="label">Display Name:</h5>
           <input
             type="text"
             id="displayName"
@@ -23,7 +30,7 @@
             maxlength="25"
             placeholder="Enter Display Name"
             v-model="user.displayName"
-          />
+          /> -->
           <h5 class="label">Birth Date:</h5>
           <input
             class="fadeIn third"
@@ -34,6 +41,7 @@
             max="2020-04-10"
             v-model="user.birthDate"
           />
+          
           <h5 class="label">Height (inches):</h5>
           <input
             class="fadeIn fourth"
@@ -45,6 +53,8 @@
             v-model="user.height"
             placeholder="Enter Height"
           />
+          </div>
+          <div class="profile-form">
           <h5 class="label">Current Weight (pounds):</h5>
           <input
             class="fadeIn fifth"
@@ -55,6 +65,7 @@
             max="1500"
             v-model="user.currentWeight"
           />
+          
           <h5 class="label">Goal Weight (pounds):</h5>
           <input
             class="fadeIn sixth"
@@ -65,7 +76,7 @@
             max="1500"
             v-model="user.goalWeight"
           />
-
+          </div>
           <h5 class="label">Picture location:</h5>
           <input
             class="fadeIn seventh"
@@ -214,6 +225,8 @@ export default {
 </script>
 
 <style>
+
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -222,6 +235,7 @@ export default {
   width: 100%;
   min-height: 100%;
   padding: 20px;
+  padding-right: 100px;
 }
 
 #formContent {
@@ -229,8 +243,8 @@ export default {
   border-radius: 10px 10px 10px 10px;
   background: #fff;
   padding: 30px;
-  width: 90%;
-  max-width: 450px;
+  width: 750px;
+  max-width: 1000px;
   position: relative;
   padding: 0px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
@@ -314,7 +328,7 @@ input[type="url"] {
   display: inline-block;
   font-size: 16px;
   margin: 5px;
-  width: 85%;
+  width: 80%;
   border: 2px solid #f6f6f6;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -495,5 +509,29 @@ input[type="url"]:placeholder {
 #icon {
   width: 60%;
 }
+.profile-form{
+  padding-top: 20px;
+  display: inline-block;
+  width: 50%;
+  
+}
+.profile-picture{
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  padding-right: 40px;
+  display: inline;
+  margin-bottom: 275px;
+  margin-left: 70px;
+  margin-right: 40px;
+  background-color: white;
+  padding: 20px;
+
+}
+
+
 </style>
 
