@@ -1,18 +1,18 @@
 <template>
    <div id="app">
-    <div id="nav" class="navbar justify-content-center fixed-top" style="background-color: #e3f1f1;">
-      <button class="btn btn-outline-info" color:teal v-if="!isLoggedIn">
-        <router-link to="/">Login</router-link>
+    <div id="nav" class="navbar navbar-dark bg-dark justify-content-center fixed-top">
+      <button class="btn btn-outline-info" v-if="!isLoggedIn">
+        <router-link style="color:#17a2b8" to="/">Login</router-link>
       </button>
       <button class="btn btn-outline-info" v-if="isLoggedIn" v-on:click.prevent="logout">Logout</button>
       <button class="btn btn-outline-info">
-        <router-link to="/register">Register</router-link>
+        <router-link style="color:#17a2b8" to="/register">Register</router-link>
       </button>
       <button class="btn btn-outline-info">
-        <router-link to="/home">Home</router-link>
+        <router-link style="color:#17a2b8" to="/home">Home</router-link>
       </button>
       <button class="btn btn-outline-info">
-        <router-link to="/profile">View Profile</router-link>
+        <router-link style="color:#17a2b8" to="/profile">View Profile</router-link>
       </button>
     </div>
     <router-view v-on:loggedInUser="getUser" v-bind:user="user" />
@@ -51,10 +51,12 @@ export default {
 
 <style>
 #app{
-  /* width:100%; */
-  /* position: relative; */
+color: #17a2b8;
 }
+
 #nav{
   text-align:center;
+  color:#17a2b8;
+
 }
 </style>

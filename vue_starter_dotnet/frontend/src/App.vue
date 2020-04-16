@@ -29,7 +29,7 @@ body {
 }
 
 #app {
-  width: 80%;
+  width: 100%;
   min-height: 100vh;
   height: 100%;
   background-color: lightgrey;

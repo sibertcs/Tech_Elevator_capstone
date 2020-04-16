@@ -57,10 +57,18 @@ export default {
 
 .bcardgroup {
   width: 100%;
-
 }
 
 .welcome {
   text-align: center;
+  color: teal;
+}
+
+.fs {
+  color:teal;
+}
+
+.entry-log {
+  color:teal;
 }
 </style>

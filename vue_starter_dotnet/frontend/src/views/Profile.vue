@@ -1,78 +1,63 @@
 <template>
   <div>
-    <div class="profile-display">
-      <img v-if="user.profilePicture == ''" height="150" width="150" :src= "this.defaultProfilePicture">
-      <img v-if="user.profilePicture != ''" height="150" width="150" :src= "user.profilePicture">
-      <br>
-      <br>
-      <div style="text-align: center;">
-        <div style="display: inline-block; text-align: left;">
-      <h4>Display Name: {{user.displayName}}</h4>
-      <h4>Birthday:   {{user.birthDate}}</h4>
-      <h4>Height:   {{user.height}}</h4>
-      <h4>Current Weight:   {{user.currentWeight}}</h4>
-      <h4>Goal Weight:  {{user.goalWeight}}</h4>
-        </div>
+
+
+      <div class="profile-display">
+        <br>
+          <img v-if="user.profilePicture == ''" height="150" width="150" :src= "this.defaultProfilePicture">
+          <img class="border border-success" v-if="user.profilePicture != ''" height="150" width="150" :src= "user.profilePicture">
+          <br>
+          <br>
+            <div style="text-align: center;">
+              <div style="display: inline-block; text-align: left;">
+                <h4>Display Name: <strong>{{user.displayName}}</strong></h4>
+                <h4>Birthday:  <strong>{{user.birthDate}}</strong></h4>
+                <h4>Height:   <strong>{{user.height}} inches</strong></h4>
+                <h4>Current Weight:   <strong>{{user.currentWeight}} pounds</strong></h4>
+                <h4>Goal Weight:  <strong>{{user.goalWeight}} pounds</strong></h4>
+              </div>
+            </div>
       </div>
-    </div>
-    <br>
-    <div class="edit-profile">
-    <button class="btn btn-outline-info" style="background-color: #e3f1f1;" v-on:click="isHidden=false">Edit Profile</button>
-    <div class="form-class">
-    <form v-if="!isHidden" v-on:submit.prevent="saveProfile">
-      <div class="form">
-         <div class="form-input">
-          <span class="label">Display Name:</span>
-          <input required type="text" minLength="1" maxLength="25" placeholder="Enter display name" v-model="user.displayName" />
-        </div>
-        <div class="form-input">
-          <span class="label">Birthday:</span>
-          <input required type="date" min="1900-01-01" max="2020-04-10" v-model="user.birthDate" />
-        </div>
-        <div class="form-input">
-          <span class="label">Height(inches):</span>
+
+
+      <br>
+
+
+      <div class="edit-profile">
+        <button class="btn btn-outline-info" style="background-color: #e3f1f1;" v-on:click="isHidden=false">Edit Profile</button>
+          <form v-if="!isHidden" v-on:submit.prevent="saveProfile">
+          <br>
+            <span class="label">Display Name: </span><input required type="text" minLength="1" maxLength="25" placeholder="Enter display name" v-model="user.displayName" />
+  <span class="label">  Birthday:  </span><input required type="date" min="1900-01-01" max="2020-04-10" v-model="user.birthDate" />
+  <span class="label">Height (inches):  </span><input required type="number" min="24" max="96" v-model="user.height" placeholder="Enter height"/>
+          <span class="label">Current Weight (pounds):</span>
           <input
-            class="form-control"
-            required
-            type="number"
-            min="24"
-            max="96"
-            v-model="user.height"
-            placeholder="Enter height"
-          />
-        </div>
-        <div class="form-input">
-          <span class="label">Current Weight:</span>
-          <input
-            class="form-control"
             required
             type="number"
             min="1"
             max="1500"
             v-model="user.currentWeight"
           />
-        </div>
-        <div class="form-input">
-          <span class="label">Goal Weight:</span>
+          <span class="label">Goal Weight (pounds):</span>
           <input
-            class="form-control"
             required
             type="number"
             min="1"
             max="1500"
             v-model="user.goalWeight"
           />
-        </div>
-        <div class="form-input">
-          <span class="label">Picture location:</span>
+          <br>
+                    <br>
+            <span class="label">Picture location:</span>
           <input class="form-control" type="url" maxlength="200" v-model="user.profilePicture" placeholder="Enter picture URL" />
-        </div>
-        <button type="submit">Save Profile</button>
-      </div>
-    </form>
+          <br>
+          <button class="btn btn-outline-info" style="background-color: #e3f1f1;" type="submit">Save Profile</button>
+      </form>
     </div>
-    </div>
-  </div>
+
+
+</div>
+
 </template>
 
 <script>
@@ -221,18 +206,13 @@ text-align: center;
 
 .edit-profile {
   text-align: center;
+  color:teal;
 }
 
 .form {
   width: 300px;
   text-align: center;
   margin-top: 20px;  
-}
-
-.form-input {
-  padding: 10px;
-  text-justify: center;
-  justify-items: center;
 }
 
 </style>

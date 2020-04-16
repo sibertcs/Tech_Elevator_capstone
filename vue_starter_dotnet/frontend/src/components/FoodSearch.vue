@@ -2,7 +2,7 @@
 <div>
   
   <form v-on:submit.prevent="getFoods">
-    <input v-on:change="getFoods" type="text" v-model="search" placeholder="Search for foods.."/>
+    <input class="btn btn-outline-info form-control" v-on:change="getFoods" type="text" v-model="search" placeholder="Search for foods.."/>
     <button class="btn btn-outline-info" type="submit">Search</button>
   </form>
   <div>
@@ -10,7 +10,7 @@
       <br>
       <h5>{{food.foodName}}</h5>
       <h6>Calories: {{food.foodCalories}}</h6>
-      <select v-model="food.mealType">
+      <select class="btn btn-outline-info" v-model="food.mealType">
         <span>Select meal type:</span>
         <option selected disabled value="">Please select one</option>
         <option>Breakfast</option>
@@ -18,7 +18,7 @@
         <option>Dinner</option>
         <option>Snack</option>
       </select>
-      <select v-model="food.servings">
+      <select class="btn btn-outline-info" v-model="food.servings">
         <span>Select meal type:</span>
         <option selected disabled value="">Please select one</option>
         
@@ -32,9 +32,9 @@
         
         <option>5</option>
       </select>
-      <input type="date" min="1900-01-01" v-model="food.consumptionDate">
+      <input class="btn btn-outline-info" type="date" min="1900-01-01" v-model="food.consumptionDate">
       <!-- <input type="time" v-model="food.consumptionTime"> -->
-      <button type="submit">Add Food</button>
+      <button class="btn btn-outline-info" type="submit">Add Food</button>
     </form>
   </div>
   </div>
