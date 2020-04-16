@@ -8,11 +8,11 @@ namespace SampleApi.DAL
 {
     public interface IChartDAO
     {
-        ChartModel GetDataForWeek(string userName);
+        List<int> GetDataForWeek(string userName);
 
-        ChartModel GetDataForMonth(string userName);
+        List<int> GetDataForMonth(string userName);
 
-        ChartModel GetDataForYear(string userName);
+        List<int> GetDataForYear(string userName);
 
         List<DailyChartModel> GetDataForDay(string userName, DateTime filterDate);
 

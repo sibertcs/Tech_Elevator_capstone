@@ -13,7 +13,7 @@
       </b-card>
     </b-card-group>
     <b-card>
-      <progress-charts></progress-charts>
+      <progress-charts :key="chartKey"></progress-charts>
     </b-card>
   </header>
 </template>
@@ -39,7 +39,8 @@ export default {
   },
   data() {
     return {
-      chartData: null
+      chartData: null,
+      chartKey: 0
     };
   },
   props: {
