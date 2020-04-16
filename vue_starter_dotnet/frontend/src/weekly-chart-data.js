@@ -7,31 +7,13 @@ export const weeklyCalorieData = {
           label: 'Calories Consumed',
           data: [],
           backgroundColor: [
-            '#AC58FA', 
-            '#AC58FA',
-            '#AC58FA',
-            '#AC58FA',
-            '#AC58FA',
-            '#AC58FA',
-            '#AC58FA',
-            '#AC58FA',
-           
+            '#119CFF'
           ],
           borderColor: [
-            '#AC58FA',
-            '#36495d',
-            '#36495d',
-            '#36495d',
-            '#36495d',
-            '#36495d',
-            '#36495d',
-            '#36495d',
+            '#0B0B61'
           ],
           borderWidth: 3
         },
-        
-         
-       
       ]
     },
     
