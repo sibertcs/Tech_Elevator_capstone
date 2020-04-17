@@ -64,6 +64,7 @@
             min="1"
             max="1500"
             v-model="user.currentWeight"
+            placeholder="Enter Current Weight"
           />
           
           <h5 class="label">Goal Weight (pounds):</h5>
@@ -75,6 +76,7 @@
             min="1"
             max="1500"
             v-model="user.goalWeight"
+            placeholder="Enter Goal Weight"
           />
           </div>
           <h5 class="label">Picture location:</h5>
@@ -84,7 +86,7 @@
             type="url"
             maxlength="200"
             v-model="user.profilePicture"
-            placeholder="Enter picture URL"
+            placeholder="Enter Picture URL"
           />
 
           <input

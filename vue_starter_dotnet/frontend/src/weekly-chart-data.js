@@ -7,10 +7,10 @@ export const weeklyCalorieData = {
           label: 'Calories Consumed',
           data: [],
           backgroundColor: [
-            '#119CFF'
+            '#de7119'
           ],
           borderColor: [
-            '#0B0B61'
+            '#de7119'
           ],
           borderWidth: 3
         },

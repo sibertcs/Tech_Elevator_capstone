@@ -1,16 +1,16 @@
 <template>
   <div>
     <div>
-      <input id="entryLogDate" v-on:change="filterByDate(date)" v-model="date"  type="date"/>
+      <input style="font-size:14px; padding: 0" id="entryLogDate" v-on:change="filterByDate(date)" v-model="date"  type="date"/>
       
     </div>
     <div v-for="food in meals" :key="food.mealID">
             <br>
       <h5>{{food.foodName}}</h5>
-      <h6>Servings: {{food.servings}}</h6>
-      <h6>Meal Type: {{food.mealType}}</h6>
-      <h6>Calories: {{food.totalCalories}}</h6>
-      <h6>Date: {{trimTime(food.consumptionDate)}}</h6>
+      <h6 style="font-size: 12px; color: black">Servings:  {{food.servings}}</h6>
+      <h6 style="font-size: 12px; color: black">Meal Type: {{food.mealType}}</h6>
+      <h6 style="font-size: 12px; color: black">Calories:  {{food.totalCalories}}</h6>
+      <h6 style="font-size: 12px; color: black">Date:      {{trimTime(food.consumptionDate)}}</h6>
       <button class="btn btn-outline-info" v-on:click="removeEntry(food.mealID)">Remove Entry</button>
       <button class="btn btn-outline-info" v-if="isHidden" v-on:click="isHidden = false">Edit Entry</button>
       <button class="btn btn-outline-info" v-if="!isHidden" v-on:click="isHidden = true">Hide Form</button>

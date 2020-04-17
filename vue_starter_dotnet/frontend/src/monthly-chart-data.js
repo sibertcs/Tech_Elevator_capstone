@@ -7,14 +7,7 @@ export const monthlyCalorieData = {
           label: 'Calories Consumed',
           data: [],
           backgroundColor: [
-            'rgba(54,73,93,.5)', // Blue
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)',
-            'rgba(54,73,93,.5)'
+            '#dee3e2'
           ],
           borderColor: [
             '#36495d',

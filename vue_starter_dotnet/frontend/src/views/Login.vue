@@ -404,7 +404,4 @@ input[type="password"]:placeholder {
   outline: none;
 }
 
-#icon {
-  width: 60%;
-}
 </style>

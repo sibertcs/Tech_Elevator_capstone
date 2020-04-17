@@ -11,7 +11,7 @@
     </div> -->
   <b-card style="height: 90px">
   <form class="active-cyan-3 active-cyan-4 mb-4" style="" v-on:submit.prevent="getFoods">
-    <i class="fas fa-search"></i><input id="searchbar" style="width:80%" class="form-control" v-on:change="getFoods" type="text" v-model="search" placeholder="Search here.."/>
+    <i class="fas fa-search"></i><input id="searchbar" style="width:80%; padding: 0" class="form-control" v-on:change="getFoods" type="text" v-model="search" placeholder="Search here.."/>
   <!--   <button class="btn btn-outline-info" type="submit">Submit</button> -->
   
   <!-- <form class="active-cyan-3 active-cyan-4 mb-4" v-on:submit.prevent="getFoods">
@@ -25,7 +25,7 @@
     <form  v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood(food)">
       <br>
       <h5>{{food.foodName}}</h5>
-      <h6>Calories: {{food.foodCalories}}</h6>
+      <h6 style="color: black">Calories: {{food.foodCalories}}</h6>
       <select class="btn btn-outline-info" v-model="food.mealType">
         <span>Select meal type:</span>
         <option selected disabled value="">Please select one</option>
@@ -36,7 +36,7 @@
       </select>
       <select class="btn btn-outline-info" v-model="food.servings">
         <span>Select meal type:</span>
-        <option selected disabled value="">Please select one</option>
+        <option selected disabled value="">Servings</option>
         
         <option>1</option>
         
@@ -48,7 +48,7 @@
         
         <option>5</option>
       </select>
-      <input class="btn btn-outline-info" type="date" min="1900-01-01" v-model="food.consumptionDate">
+      <input style="border-color:#17a2b8; padding: 0" class="btn btn-outline-info" type="date" min="1900-01-01" v-model="food.consumptionDate">
       <!-- <input type="time" v-model="food.consumptionTime"> -->
       <button class="btn btn-outline-info" type="submit">Add Food</button>
     </form>

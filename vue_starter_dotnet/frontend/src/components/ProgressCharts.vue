@@ -1,12 +1,12 @@
 <template>
   <div>
     <span>
-      <button v-on:click="getWeeklyData">Weekly</button>
-      <button v-on:click="getMonthlyData">Monthly</button>
-      <button v-on:click="getYearlyData">Yearly</button>
+      <button style="background: none; border: none; color: #17a2b8; text-decoration: underline; padding-right: 20px" v-on:click="getWeeklyData">Weekly</button>
+      <button style="background: none; border: none; color: #17a2b8; text-decoration: underline; padding-right: 20px" v-on:click="getMonthlyData">Monthly</button>
+      <button style="background: none; border: none; color: #17a2b8; text-decoration: underline" v-on:click="getYearlyData">Yearly</button>
       <!-- <button v-on:click="getLifetimeData">Lifetime</button> -->
     </span>
-    <canvas id="chartData"></canvas>
+    <canvas style="max-height: 300px" id="chartData"></canvas>
 <!--     <canvas  id="weekly-calorie-chart">Chart</canvas>
     <canvas  id="monthly-calorie-chart">Chart</canvas>
     <canvas  id="yearly-calorie-chart">Chart</canvas> -->

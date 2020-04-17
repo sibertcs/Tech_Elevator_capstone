@@ -1,8 +1,8 @@
 <template>
   <div>
-        <h4>Daily Calories: {{this.getDailyCalories}}</h4>
+        <h4>Daily Calories: <span style="color: black">{{this.getDailyCalories}}</span></h4>
     <div>
-      <input id="calories" v-on:change="filterByDate()" v-model="date" type="date"/>
+      <input style="padding: 0; margin-bottom: 50px" id="calories" v-on:change="filterByDate()" v-model="date" type="date"/>
     </div>
 
     <canvas id="daily-calorie-chart">Chart</canvas>

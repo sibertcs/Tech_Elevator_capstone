@@ -32,7 +32,7 @@ body {
   width: 100%;
   min-height: 100vh;
   height: 100%;
-  background-color: lightgrey;
+  background-color: #F0F0F0;
   margin: 10px auto;
   padding: 20px;
   /*box-shadow: 4px 4px rgb(0, 0, 0, 40%);*/

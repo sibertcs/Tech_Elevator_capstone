@@ -1,11 +1,11 @@
 <template>
    <div id="app">
     <div id="nav" class="navbar navbar-dark bg-dark justify-content-center fixed-top">
-      <h4 style="font-family: Quantico; padding-right: 100px">Cal Tracker 2000</h4>
+      <h4 style="font-family: Quantico; padding-right: 50px">O-kcal</h4>
       
 
       <h5 v-if="this.user != undefined" style="padding-left: 500px; padding-right: 20px" >{{user.sub}}</h5>
-      <button class="btn btn-outline-info" v-if="!isLoggedIn">
+      <button class="btn btn-outline-info" style="margin-left: 100px" v-if="!isLoggedIn">
         <router-link style="color:#17a2b8" to="/">Login</router-link><i style="padding:4px" class="fas fa-plug"></i>
       </button>
       <button v-if="!isLoggedIn" class="btn btn-outline-info">

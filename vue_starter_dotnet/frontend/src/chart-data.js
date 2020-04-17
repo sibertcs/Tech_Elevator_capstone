@@ -7,10 +7,10 @@ export const dailyCalorieData = {
           label: 'Calories Consumed',
           data: [],
           backgroundColor: [
-            '#119CFF', // Blue
-            '#30FBAD',
-            '#F8572F',
-            '#9218F8'
+            '#17a2b8',
+            '#116979',
+            '#dee3e2',
+            '#de7119'
            
           ],
           borderColor: [
@@ -33,14 +33,14 @@ export const dailyCalorieData = {
     options: {
       responsive: true,
       lineTension: 1,
-      scales: {
+/*       scales: {
         yAxes: [{
           ticks: {
             beginAtZero: true,
             padding: 25,
           }
-        }]
-      }
+        }] 
+      }*/
     }
   }
   
