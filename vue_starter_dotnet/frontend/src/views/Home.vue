@@ -2,10 +2,10 @@
   <header>
     
     <b-card-group column class="bcardgroup" style="padding:10px">
-      <b-card title="Search for Foods..." style="height: 400px; overflow-y:auto; color: #17a2b8" class="cards food-search bg-light">
+      <b-card title="What did you eat?" style="color: #17a2b8" class="cards food-search bg-light">
         <food-search></food-search>
       </b-card>
-      <b-card title="Items Consumed..." style="height: 400px; overflow-y:auto; color: #17a2b8" class="cards entry-log bg-light">
+      <b-card title="Items Consumed..." style="justify-align: center; overflow-y:auto; color: #17a2b8" class="cards entry-log bg-light">
         <entry-log v-on:chartDataReady="saveChartData"></entry-log>
       </b-card>
       <b-card class=" cards bg-light">
@@ -57,6 +57,7 @@ export default {
 
 <style>
 .cards{
+  height:575px;
   margin:10px;
  -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
@@ -68,7 +69,7 @@ export default {
   padding: 0px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(5, 62, 71, 0.3);
   box-shadow: 0 30px 60px 0 rgba(5, 62, 71, 0.3);
-  text-align: center;
+  text-align: left;
 }
   
 
@@ -83,6 +84,7 @@ export default {
 
 .bcardgroup {
   width: 100%;
+  height: 700px;
 }
 
 .welcome {

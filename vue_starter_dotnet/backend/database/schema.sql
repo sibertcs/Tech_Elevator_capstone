@@ -36,7 +36,6 @@ CREATE TABLE profiles
 	goal_weight		int				not	null,
 	height			int				not null,
 	profile_picture	varchar(200)	not null,
-	display_name	varchar(200)	not null,
 	user_name		varchar(200)	not null unique,
 	
 	
@@ -71,7 +70,7 @@ COMMIT TRANSACTION;
 --FOREIGN KEY(profiles_id)
 --REFERENCES users (users_id);
 
---begin transaction
---INSERT INTO meals VALUES (1111, 'Apple','2020-04-10', 1.0, 'Snack', 69, 'Admin')
+begin transaction
+ALTER TABLE profiles DROP COLUMN display_name
 
---rollback
+rollback

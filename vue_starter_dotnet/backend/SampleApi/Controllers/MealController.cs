@@ -74,7 +74,7 @@ namespace SampleApi.Controllers
             using (var client = new HttpClient())
             {
                 var apiKey = "GQVsihhcGgBndgYOHrE6Ny0CDsaNxX5Iiy4pfbAc";
-                client.BaseAddress = new Uri($"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={apiKey}&query={foodSearch}&pageSize=5");
+                client.BaseAddress = new Uri($"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={apiKey}&query={foodSearch}&pageSize=50");
                
                 //HTTP GET
                 //var responseTask = client.GetAsync("&query=" + foodSearch);

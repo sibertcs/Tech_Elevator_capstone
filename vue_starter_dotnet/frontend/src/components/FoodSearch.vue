@@ -9,13 +9,15 @@
     <div class="wrap" style="text-align: center; color: #fff;">
         <a href="http://opensnippets.com" target: "_blank" class="btn btn-primary">Download free bootstrap forms</a>
     </div> -->
-  
-  <form class="active-cyan-3 active-cyan-4 mb-4" v-on:submit.prevent="getFoods">
-    <i class="fas fa-search"></i><input id="searchbar" class="form-control" v-on:change="getFoods" type="text" v-model="search" placeholder="Search.."/>
-    <button class="btn btn-outline-info" type="submit">Submit</button>
+  <b-card style="height: 90px">
+  <form class="active-cyan-3 active-cyan-4 mb-4" style="" v-on:submit.prevent="getFoods">
+    <i class="fas fa-search"></i><input id="searchbar" style="width:80%" class="form-control" v-on:change="getFoods" type="text" v-model="search" placeholder="Search here.."/>
+  <!--   <button class="btn btn-outline-info" type="submit">Submit</button> -->
  
   </form>
+  </b-card>
   <div>
+    <b-card style="height: 400px; overflow-y:auto;">
     <form  v-for="food in meals" :key="food.fdcid" v-on:submit.prevent="saveFood(food)">
       <br>
       <h5>{{food.foodName}}</h5>
@@ -46,6 +48,7 @@
       <!-- <input type="time" v-model="food.consumptionTime"> -->
       <button class="btn btn-outline-info" type="submit">Add Food</button>
     </form>
+    </b-card>
   </div>
   </div>
 </template>

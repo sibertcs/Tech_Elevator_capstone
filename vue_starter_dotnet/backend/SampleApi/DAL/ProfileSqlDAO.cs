@@ -33,13 +33,12 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO profiles VALUES (@birthDate, @currentWeight, @goalWeight, @height, @picture, @displayName, @userName);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO profiles VALUES (@birthDate, @currentWeight, @goalWeight, @height, @picture, @userName);", conn);
                     cmd.Parameters.AddWithValue("@birthDate", profile.BirthDate);
                     cmd.Parameters.AddWithValue("@currentWeight", profile.CurrentWeight);
                     cmd.Parameters.AddWithValue("@goalWeight", profile.GoalWeight);
                     cmd.Parameters.AddWithValue("@height", profile.Height);
                     cmd.Parameters.AddWithValue("@picture", profile.ProfilePicture);
-                    cmd.Parameters.AddWithValue("@displayName", profile.DisplayName);
                     cmd.Parameters.AddWithValue("@userName", profile.UserName);
 
                     cmd.ExecuteNonQuery();
