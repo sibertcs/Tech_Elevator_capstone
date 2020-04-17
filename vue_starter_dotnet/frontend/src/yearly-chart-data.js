@@ -4,7 +4,7 @@ export const yearlyCalorieData = {
       labels: [],
       datasets: [
         { // one line graph
-          label: 'Calories Consumed',
+          label: 'Calorie Intake',
           data: [],
           backgroundColor: [
             '#17a2b8',

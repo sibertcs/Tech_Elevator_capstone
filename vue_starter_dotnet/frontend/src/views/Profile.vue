@@ -90,6 +90,7 @@
           />
 
           <input
+            style="background-color: teal"
             class="fadeIn eighth"
             value="Save Profile"
             type="submit"
@@ -122,7 +123,7 @@ export default {
       isHidden: true,
       formValidation: false,
       defaultProfilePicture:
-        "https://www.politicspa.com/wp-content/uploads/2013/07/Silhouette-question-mark.jpeg"
+        "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fzblogged.com%2Fwp-content%2Fuploads%2F2016%2F02%2F1-3.jpg&f=1&nofb=1"
     };
   },
   created() {
@@ -271,7 +272,7 @@ h2.inactive {
 
 h2.active {
   color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom: 2px solid teal;
 }
 
 /* FORM TYPOGRAPHY*/
@@ -279,7 +280,7 @@ h2.active {
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
-  background-color: #56baed;
+  background-color: teal;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -303,7 +304,7 @@ input[type="reset"] {
 input[type="button"]:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover {
-  background-color: #39ace7;
+  background-color: teal;
 }
 
 input[type="button"]:active,
@@ -347,7 +348,7 @@ input[type="number"]:focus,
 input[type="date"]:focus,
 input[type="url"]:focus {
   background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom: 2px solid teal
 }
 
 input[type="text"]:placeholder,

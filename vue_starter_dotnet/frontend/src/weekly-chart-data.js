@@ -4,7 +4,7 @@ export const weeklyCalorieData = {
       labels: [],
       datasets: [
         { // one line graph
-          label: 'Calories Consumed',
+          label: 'Calorie Intake',
           data: [],
           backgroundColor: [
             '#de7119'

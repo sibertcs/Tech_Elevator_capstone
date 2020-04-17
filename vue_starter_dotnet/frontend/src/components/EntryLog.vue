@@ -13,7 +13,7 @@
       <h6 style="font-size: 12px; color: black">Date:      {{trimTime(food.consumptionDate)}}</h6>
       <button class="btn btn-outline-info" v-on:click="removeEntry(food.mealID)">Remove Entry</button>
       <button class="btn btn-outline-info" v-if="isHidden" v-on:click="isHidden = false">Edit Entry</button>
-      <button class="btn btn-outline-info" v-if="!isHidden" v-on:click="isHidden = true">Hide Form</button>
+      <button class="btn btn-outline-info" v-if="!isHidden" v-on:click="isHidden = true">Cancel</button>
       <form v-if="!isHidden" v-on:submit.prevent="editEntry(food)">
         <select class="btn btn-outline-info" v-model="food.mealType">
           <span>Select meal type:</span>
@@ -37,7 +37,7 @@
           
           <option>5</option>
         </select>
-        <button class="btn btn-outline-info" type="submit">Edit Entry</button>
+        <button class="btn btn-outline-info" type="submit">Save Changes</button>
       </form>
     </div>
   </div>
