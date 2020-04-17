@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <input class="btn btn-outline-info" id="entryLogDate" v-on:change="filterByDate(date)" v-model="date"  type="date"/>
+      <input id="entryLogDate" v-on:change="filterByDate(date)" v-model="date"  type="date"/>
       
     </div>
     <div v-for="food in meals" :key="food.mealID">
@@ -13,9 +13,9 @@
       <h6>Date: {{trimTime(food.consumptionDate)}}</h6>
       <button class="btn btn-outline-info" v-on:click="removeEntry(food.mealID)">Remove Entry</button>
       <button class="btn btn-outline-info" v-if="isHidden" v-on:click="isHidden = false">Edit Entry</button>
-      <button v-if="!isHidden" v-on:click="isHidden = true">Hide Form</button>
+      <button class="btn btn-outline-info" v-if="!isHidden" v-on:click="isHidden = true">Hide Form</button>
       <form v-if="!isHidden" v-on:submit.prevent="editEntry(food)">
-        <select v-model="food.mealType">
+        <select class="btn btn-outline-info" v-model="food.mealType">
           <span>Select meal type:</span>
           <option selected disabled value>Please select one</option>
           <option>Breakfast</option>
@@ -23,7 +23,7 @@
           <option>Dinner</option>
           <option>Snack</option>
         </select>
-        <select v-model="food.servings">
+        <select class="btn btn-outline-info" v-model="food.servings">
           <span>Select meal type:</span>
           <option selected disabled value>Please select one</option>
           
@@ -37,7 +37,7 @@
           
           <option>5</option>
         </select>
-        <button type="submit">Edit Entry</button>
+        <button class="btn btn-outline-info" type="submit">Edit Entry</button>
       </form>
     </div>
   </div>
@@ -160,4 +160,7 @@ export default {
 </script>
 
 <style>
+#entryLogDate {
+  border-color:#17a2b8;
+}
 </style>
